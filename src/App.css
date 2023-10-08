@@ -1,0 +1,100 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+#root{
+  width: 78%;
+  float: left;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+#sidebar{
+  width: 20%;
+  height: 100%;
+  float:left;
+  border-right: 1px solid;
+}
+#header{
+  width: 100%;
+  height: 40px;
+  border-bottom: 1px solid;
+  text-align: center;
+  padding: 10px 0px;
+}
+.blockdrawer{
+  width : 350px !important;
+}
+.text-updater-node {
+  height: 50px;
+  border: 1px solid #eee;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #eee;
+}
+.text-updater-node label {
+  display: block;
+  color: #777;
+  font-size: 12px;
+}
+.context-menu {
+  background: white;
+  border-style: solid;
+  box-shadow: 10px 19px 20px rgba(0, 0, 0, 10%);
+  position: absolute;
+  z-index: 10;
+}
+
+.context-menu button {
+  border: none;
+  display: block;
+  padding: 0.5em;
+  text-align: left;
+  width: 100%;
+}
+.context-menu button:hover {
+  background: white;
+}
+.react-flow__node-textUpdater {
+  padding: 10px;
+  border-radius: 3px;
+  width: 150px;
+  font-size: 12px;
+  color: #222;
+  text-align: center;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #0d0784;
+  background-color: white;
+}
