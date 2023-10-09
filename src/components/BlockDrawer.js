@@ -6,10 +6,10 @@ import WaForm from './WaForm';
 //import styles 👇
 import 'react-modern-drawer/dist/index.css';
 
-const BlockDrawer = ({currentNodeId, isOpen, toggleDrawer}) => {
+const BlockDrawer = ({currentNodeId, isOpen, toggleDrawer, onAddHandle}) => {
     return (
-        <Drawer open={isOpen} onClose={toggleDrawer} direction='right' className='blockdrawer'>
-            <WaForm/>
+        <Drawer open={isOpen} onClose={toggleDrawer} direction='bottom' className='blockdrawer'>
+            <WaForm onAddHandle={onAddHandle} currentNodeId={currentNodeId} />
             {currentNodeId}
         </Drawer>
     )

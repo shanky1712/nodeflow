@@ -37,6 +37,9 @@ const InteractionFlow = () => {
       textUpdater: (props) => <TextUpdaterNode onConfigNode={onConfigNode} onDeleteNode={onDeleteNode} {...props} />,
     }), []
   );
+  const onAddHandle = curNId => {
+    console.log('Current NID: '+curNId);
+  }
   const onConfigNode = curNid => {
     setCurrentNodeId(curNid);
     toggleDrawer();
@@ -181,7 +184,7 @@ const InteractionFlow = () => {
       {menu && <ContextMenu onClick={onPaneClick} {...menu} />}
       <Panel position="top-left">
         <button onClick={addNode}>Add</button>
-        <BlockDrawer currentNodeId={currentNodeId} isOpen={isOpen} toggleDrawer={toggleDrawer} />
+        <BlockDrawer currentNodeId={currentNodeId} isOpen={isOpen} toggleDrawer={toggleDrawer} onAddHandle={onAddHandle} />
       </Panel>
       <Panel position='top-right'>
         <button onClick={onSave}>Save Workflow</button>

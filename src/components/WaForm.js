@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const WaForm = () => {
+const WaForm = ({onAddHandle, currentNodeId}) => {
   const [formData, setFormData] = useState({name: "",email: "",message: ""});
 
   const handleChange = (event) => {
@@ -10,15 +10,14 @@ const WaForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert(`Name: ${formData.name}, Email: ${formData.email}, Message: ${formData.message}`
-    );
+    // alert(`Name: ${formData.name}, Email: ${formData.email}, Message: ${formData.message}`);
 };
 
   return (
     
     <form onSubmit={handleSubmit}>
-      <button onClick={() => onAddHandle(id)}>Add Handle</button>
-      <label htmlFor="name">Name:</label>
+      <button onClick={() => onAddHandle(currentNodeId)}>Add Handle</button>
+      {/* <label htmlFor="name">Name:</label>
       <input type="text" id="name" name="name" value={formData.name} onChange={handleChange}/>
 
       <label htmlFor="email">Email:</label>
@@ -27,7 +26,7 @@ const WaForm = () => {
       <label htmlFor="message">Message:</label>
       <textarea id="message" name="message" value={formData.message} onChange={handleChange}/>
 
-      <button type="submit">Submit</button>
+      <button type="submit">Submit</button> */}
     </form>
   );
 }

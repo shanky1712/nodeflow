@@ -53,9 +53,7 @@ html, body {
   text-align: center;
   padding: 10px 0px;
 }
-.blockdrawer{
-  width : 350px !important;
-}
+
 .text-updater-node {
   height: 50px;
   border: 1px solid #eee;
