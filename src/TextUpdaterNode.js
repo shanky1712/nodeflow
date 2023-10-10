@@ -1,6 +1,6 @@
 import { useCallback, useState, useEffect, memo } from 'react';
 import { Handle, Position, useUpdateNodeInternals, NodeToolbar } from 'reactflow';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 function TextUpdaterNode({ id, data, isConnectable, onConfigNode, onDeleteNode }) {
   const onChange = useCallback((evt) => {
     console.log(evt.target.value);
@@ -16,9 +16,15 @@ function TextUpdaterNode({ id, data, isConnectable, onConfigNode, onDeleteNode }
   return (
     <>
       <NodeToolbar>
-        <button onClick={() => onDeleteNode(id)}>Delete</button>
-        <button onClick={() => onConfigNode(id)}>Config</button>
-        <button onClick={() => setSourceHandles([...sourceHandles, {}])}>Add Handle</button>
+        <button onClick={() => onDeleteNode(id)} className='raw-btn danger'>
+          <FontAwesomeIcon icon="fa-solid fa-trash" />
+        </button>
+        <button onClick={() => onConfigNode(id)} className='raw-btn dark'>
+          <FontAwesomeIcon icon="fa-solid fa-gear" />
+        </button>
+        <button onClick={() => setSourceHandles([...sourceHandles, {}])} className='raw-btn success'>
+          <FontAwesomeIcon icon="fa-solid fa-grip-vertical" />
+        </button>
       </NodeToolbar>
       Custom Node
       <Handle type="target" position={Position.Left} />

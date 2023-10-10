@@ -53,7 +53,16 @@ html, body {
   text-align: center;
   padding: 10px 0px;
 }
-
+.react-flow__node.circle {
+  /* border-radius: 50%; */
+  background-image: url("../assets/whatsapp.png");
+  width: 60px;
+  height: 60px;
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+  border: 0px;
+}
 .text-updater-node {
   height: 50px;
   border: 1px solid #eee;
@@ -87,12 +96,45 @@ html, body {
 .react-flow__node-textUpdater {
   padding: 10px;
   border-radius: 3px;
-  width: 150px;
+  width: 100px;
   font-size: 12px;
   color: #222;
+  background-color: #0d0784;
   text-align: center;
   border-width: 1px;
   border-style: solid;
   border-color: #0d0784;
   background-color: white;
+}
+.raw-btn{
+  background: transparent;
+  border: 0px solid #fff;
+  cursor: pointer;
+  border-radius: 50%;
+  line-height: 1;
+  font-size: 18px;
+  margin: 0 10px;
+}
+button.circle{
+  width: 36px;
+  height: 36px;
+  background-color: gray;
+  padding: 0px;
+  color: white;
+
+}
+.danger{
+  color: red;
+}
+.dark{
+  color:black;
+}
+.success{
+  color:green;
+}
+.react-flow__handle.source{
+  background-color: green;
+}
+.react-flow__handle.target{
+  background-color: orange;
 }

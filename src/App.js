@@ -21,7 +21,9 @@ import ButtonEdge from './ButtonEdge';
 import TextUpdaterNode from './TextUpdaterNode';
 import 'reactflow/dist/style.css';
 import './App.css';
-
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // const onNodeDragStart = (event, node) => console.log('drag start', node);
 // const onNodeDragStop = (event, node) => console.log('drag stop', node);
 // const onPaneClick = (event) => console.log('onPaneClick', event);
@@ -44,7 +46,10 @@ const InteractionFlow = () => {
     setCurrentNodeId(curNid);
     toggleDrawer();
   }
-  const onDeleteNode = () => {};
+  const onDeleteNode = id => {
+    // setNodes((nodes) => nodes.filter((node) => node.id !== id));
+    // setEdges((edges) => edges.filter((edge) => edge.source !== id));
+  };
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   // const [nodes, setNodes] = useState(initialNodes);
@@ -183,11 +188,15 @@ const InteractionFlow = () => {
       <Background/>
       {menu && <ContextMenu onClick={onPaneClick} {...menu} />}
       <Panel position="top-left">
-        <button onClick={addNode}>Add</button>
+        <button onClick={addNode} className='raw-btn circle success'>
+          <FontAwesomeIcon icon="fa-solid fa-add" />
+        </button>
         <BlockDrawer currentNodeId={currentNodeId} isOpen={isOpen} toggleDrawer={toggleDrawer} onAddHandle={onAddHandle} />
       </Panel>
       <Panel position='top-right'>
-        <button onClick={onSave}>Save Workflow</button>
+        <button onClick={onSave} className='raw-btn circle success'>
+          <FontAwesomeIcon icon="fa-solid fa-save" />
+        </button>
       </Panel>
     </ReactFlow>
     
@@ -201,4 +210,6 @@ export default function () {
     </ReactFlowProvider>
   );
 }
+
+library.add(fas)
 // export default memo(InteractionFlow);

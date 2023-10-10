@@ -1,6 +1,6 @@
 import React from "react"
 import { BaseEdge, EdgeLabelRenderer, getBezierPath } from "reactflow"
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import "./buttonedge.css"
 
 
@@ -50,7 +50,7 @@ export default function CustomEdge({
             className="edgebutton"
             onClick={event => onEdgeClick(event, id)}
           >
-            ×
+            <FontAwesomeIcon icon="fa-solid fa-remove" />
           </button>
         </div>
       </EdgeLabelRenderer>

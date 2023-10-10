@@ -1,12 +1,13 @@
 .edgebutton {
-    width: 20px;
-    height: 20px;
-    background: #eee;
-    border: 1px solid #fff;
-    cursor: pointer;
-    border-radius: 50%;
-    font-size: 12px;
-    line-height: 1;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  border: 0px solid #fff;
+  cursor: pointer;
+  border-radius: 50%;
+  font-size: 8px;
+  line-height: 1;
+  color:red
   }
   
   .edgebutton:hover {
