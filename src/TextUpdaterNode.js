@@ -1,5 +1,7 @@
 import { useCallback, useState, useEffect, memo } from 'react';
 import { Handle, Position, useUpdateNodeInternals, NodeToolbar } from 'reactflow';
+import Popup from './components/modal/Popup';
+import CustomForm from './CustomForm';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 function TextUpdaterNode({ id, data, isConnectable, onConfigNode, onDeleteNode }) {
   const onChange = useCallback((evt) => {
@@ -13,20 +15,36 @@ function TextUpdaterNode({ id, data, isConnectable, onConfigNode, onDeleteNode }
     })
   }, [sourceHandles]);
 
+  const [isNewsletterModalOpen, setNewsletterModalOpen] = useState(false)
+  const handleOpenNewsletterModal = () => {
+    setNewsletterModalOpen(true)
+  }
+
+  const handleCloseNewsletterModal = () => {
+    setNewsletterModalOpen(false)
+  }
+
+  const handleSubmit = () => { }
   return (
     <>
       <NodeToolbar>
         <button onClick={() => onDeleteNode(id)} className='raw-btn danger'>
           <FontAwesomeIcon icon="fa-solid fa-trash" />
         </button>
-        <button onClick={() => onConfigNode(id)} className='raw-btn dark'>
+        {/* <button onClick={() => onConfigNode(id)} className='raw-btn dark'>
           <FontAwesomeIcon icon="fa-solid fa-gear" />
-        </button>
-        <button onClick={() => setSourceHandles([...sourceHandles, {}])} className='raw-btn success'>
-          <FontAwesomeIcon icon="fa-solid fa-grip-vertical" />
+        </button> */}
+        <button onClick={() => handleOpenNewsletterModal()} className='raw-btn dark'>
+          <FontAwesomeIcon icon="fa-solid fa-gear" />
         </button>
       </NodeToolbar>
       Custom Node
+      <Popup hasCloseBtn={true} isOpen={isNewsletterModalOpen} onClose={handleCloseNewsletterModal}>
+        <button  className='raw-btn success' onClick={() => setSourceHandles([...sourceHandles, {}])}>
+          <FontAwesomeIcon icon="fa-solid fa-grip-vertical" />
+        </button>
+        <CustomForm/>
+      </Popup>
       <Handle type="target" position={Position.Left} />
       {sourceHandles.map((sourceHandle, index) => (
         <div key={(index + 100)}>

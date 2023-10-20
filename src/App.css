@@ -138,3 +138,57 @@ button.circle{
 .react-flow__handle.target{
   background-color: orange;
 }
+
+/* .modal::backdrop {
+  background: hsl(0 0% 0% / 50%);
+}
+
+.modal {
+  max-width: 20rem;
+  width: 800px;
+  padding: 2rem;
+  border: 0;
+  border-radius: 0.5rem;
+  position: relative;
+  border-radius: 1rem;
+  position: fixed;
+  box-shadow: hsl(0 0% 0% / 10%) 0 0 0.5rem 0.25rem;
+  border : 1px solid #ccc;
+}
+.modal .modal-close-btn {
+  font-size: 20px;
+}
+.modal-close-btn {
+  font-size: 0.75em;
+  position: absolute;
+  top: 0.25em;
+  right: 0.25em;
+}
+
+.form-row + .form-row {
+  margin-top: 1rem;
+}
+
+.form-row label,
+.form-row input,
+.form-row select,
+.form-row button {
+  width: 100%;
+  display: block;
+}
+
+.msg-box {
+  padding: 1em;
+  max-width: 600px;
+  margin-top: 2em;
+  border-radius: 0.5em;
+  border: 2px solid darkgreen;
+  background: lightgreen;
+  color: darkgreen;
+} */
+
+.add-more input {
+  width: 90%;
+  float: left;
+  margin-right: 10px;
+}
