@@ -3,7 +3,7 @@ import { Handle, Position, useUpdateNodeInternals, NodeToolbar } from 'reactflow
 import Popup from './components/modal/Popup';
 import CustomForm from './CustomForm';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-function TextUpdaterNode({ id, data, isConnectable, onConfigNode, onDeleteNode }) {
+function CustomNode({ id, data, isConnectable, onConfigNode, onDeleteNode }) {
   const onChange = useCallback((evt) => {
     console.log(evt.target.value);
   }, []);
@@ -63,4 +63,4 @@ function TextUpdaterNode({ id, data, isConnectable, onConfigNode, onDeleteNode }
   );
 }
 
-export default memo(TextUpdaterNode);
+export default memo(CustomNode);

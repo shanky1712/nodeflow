@@ -18,11 +18,12 @@ import BlockDrawer from './components/BlockDrawer';
 import ContextMenu from './components/ContextMenu';
 import { initialEdges, initialNodes } from './components/nodes-and-edges';
 import ButtonEdge from './ButtonEdge';
-import TextUpdaterNode from './TextUpdaterNode';
+import CustomNode from './CustomNode';
 import 'reactflow/dist/style.css';
 import './App.css';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
+import Button from 'react-bootstrap/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // const onNodeDragStart = (event, node) => console.log('drag start', node);
 // const onNodeDragStop = (event, node) => console.log('drag stop', node);
@@ -33,10 +34,10 @@ const proOptions = {hideAttribution: true}
 const edgeTypes = {buttonedge: ButtonEdge, };
 
 const InteractionFlow = () => {
-  // const nodeTypes = {textUpdater: TextUpdaterNode};
+  // const nodeTypes = {textUpdater: CustomNode};
   const nodeTypes = useMemo(
     () => ({
-      textUpdater: (props) => <TextUpdaterNode onConfigNode={onConfigNode} onDeleteNode={onDeleteNode} {...props} />,
+      textUpdater: (props) => <CustomNode onConfigNode={onConfigNode} onDeleteNode={onDeleteNode} {...props} />,
     }), []
   );
   const onAddHandle = curNId => {
@@ -152,7 +153,25 @@ const InteractionFlow = () => {
       ];
     });
   }, []);
-
+  const addTargetNode = useCallback(() => {
+    xPos.current += 50;
+    yPos.current += 50;
+    setNodes((nodes) => {
+      console.log(nodes);
+      const nC = nodes.length;
+      return [
+        ...nodes,
+        {
+          id: 'interaction-'+(nC+1),
+          sourcePosition: 'right',
+          targetPosition: 'left',
+          type: 'output',
+          position: { x: xPos.current, y: yPos.current },
+          data: { label: "End" }
+        }
+      ];
+    });
+  }, []);
   return (
     
     <ReactFlow
@@ -188,15 +207,19 @@ const InteractionFlow = () => {
       <Background/>
       {menu && <ContextMenu onClick={onPaneClick} {...menu} />}
       <Panel position="top-left">
-        <button onClick={addNode} className='raw-btn circle success'>
-          <FontAwesomeIcon icon="fa-solid fa-add" />
-        </button>
+        <Button onClick={addNode}  variant="secondary">
+          <FontAwesomeIcon icon="fa-solid fa-arrows-h" /> Custom
+        </Button>
+        &nbsp;
+        <Button onClick={addTargetNode}  variant="secondary">
+          <FontAwesomeIcon icon="fa-solid fa-arrow-left" /> End
+        </Button>
         <BlockDrawer currentNodeId={currentNodeId} isOpen={isOpen} toggleDrawer={toggleDrawer} onAddHandle={onAddHandle} />
       </Panel>
       <Panel position='top-right'>
-        <button onClick={onSave} className='raw-btn circle success'>
-          <FontAwesomeIcon icon="fa-solid fa-save" />
-        </button>
+        <Button onClick={onSave}  variant="secondary">
+          <FontAwesomeIcon icon="fa-solid fa-save" /> Save
+        </Button>
       </Panel>
     </ReactFlow>
     
