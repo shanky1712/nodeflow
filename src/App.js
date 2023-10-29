@@ -38,7 +38,7 @@ const InteractionFlow = () => {
   // const nodeTypes = {customNode: CustomNode};
   const nodeTypes = useMemo(
     () => ({
-      customNode: (props) => <CustomNode onConfigNode={onConfigNode} onDeleteNode={onDeleteNode} {...props} />,
+      customNode: (props) => <CustomNode onConfigNode={onConfigNode} onDeleteNode={onDeleteNode} nodes={nodes} setNodes={setNodes} {...props} />,
     }), []
   );
   const onAddHandle = curNId => {
@@ -57,8 +57,8 @@ const InteractionFlow = () => {
     setEdges((edges) => edges.filter((edge) => edge.source !== id));
     setEdges((edges) => edges.filter((edge) => edge.target !== id));
   };
-  // console.log(nodes)
-  // console.log(edges)
+  console.log(nodes)
+  console.log(edges)
   // const [nodes, setNodes] = useState(initialNodes);
   // const [edges, setEdges] = useState(initialEdges);
   const [menu, setMenu] = useState(null);
