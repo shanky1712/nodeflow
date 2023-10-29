@@ -12,15 +12,15 @@ import LocationWidget from '././components/FormGrp/LocationWidget'
 import ContactWidget from '././components/FormGrp/ContactWidget'
 import InteractiveWidget from '././components/FormGrp/InteractiveWidget'
 import TemplateWidget from '././components/FormGrp/TemplateWidget'
-const CustomForm = () => {
+const CustomForm = ({formData, setFormData, defaultTab, setDefaultTab}) => {
   const handleSaveModal = () => { }
-  const [defaultTab, setDefaultTab] = useState("text");
+  
   return (
     <div>
       <Tabs defaultActiveKey={defaultTab} id="uncontrolled-tab-example" className="mb-3" >
         {/* Text */}
         <Tab eventKey="text" title="Text" onClick={(e) => setDefaultTab("text")}>
-          <TextWidget />
+          <TextWidget formData={formData} setFormData={setFormData} />
         </Tab>
         {/* Image */}
         <Tab eventKey="image" title="Image" onClick={(e) => setDefaultTab("image")}>

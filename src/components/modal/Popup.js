@@ -2,7 +2,8 @@ import React, { useState, useRef, useEffect } from "react";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
-const Popup = ({ isOpen, onClose, sourceHandles, setSourceHandles, children }) => {
+import CustomForm from '../../CustomForm';
+const Popup = ({ getData, isOpen, onClose, sourceHandles, setSourceHandles, children }) => {
   const [isModalOpen, setModalOpen] = useState(isOpen)
   const modalRef = useRef(null)
 
@@ -30,14 +31,15 @@ const Popup = ({ isOpen, onClose, sourceHandles, setSourceHandles, children }) =
       });
     }
   }, [isLoading]);
-
+  const [formData, setFormData] = useState({});
+  const [defaultTab, setDefaultTab] = useState("text");
   const handleSaveNodeForm = (event) => {
     event.preventDefault();
     alert(`remove `)
     setSourceHandles([...sourceHandles, {}])
     setLoading(true);
   }
-
+  
   return (
     <>
       <Modal show={isOpen} onHide={handleCloseModal} size="lg">
@@ -46,7 +48,7 @@ const Popup = ({ isOpen, onClose, sourceHandles, setSourceHandles, children }) =
             <Modal.Title>Message Types</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            {children}
+            <CustomForm formData={formData} setFormData={setFormData} defaultTab={defaultTab} setDefaultTab={setDefaultTab} />
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleCloseModal}>

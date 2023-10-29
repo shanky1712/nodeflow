@@ -1,11 +1,11 @@
 import { useState } from "react";
 import Form from 'react-bootstrap/Form';
-const TextWidget = () => {
+const TextWidget = ({formData, setFormData}) => {
   let formStateData = {
     bodyTxt: '',
   };
-  const [formData, setFormData] = useState(formStateData);
-
+  // const [formData, setFormData] = useState(formStateData);
+  // setFormData([...formData, {}])
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
