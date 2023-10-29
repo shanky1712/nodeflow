@@ -7,35 +7,34 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 const InteractiveWidget = () => {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // alert(`Name: ${formData.name}, Email: ${formData.email}, Message: ${formData.message}`);
-  };
-
   const [radioValue, setRadioValue] = useState('1');
   const radios = [
     { name: 'Button', value: '1' },
     { name: 'List', value: '2' },
   ];
-  const [listMore, setListMore] = useState([{ listItems : ""}]);
 
-  const handleListAdd = () => {
-    setListMore([...listMore, { listItems: "" }]);
+  const [optionList, setOptionList] = useState([{ option: "" }]);
+
+  const handleServiceChange = (e, index) => {
+    const { name, value } = e.target;
+    const list = [...optionList];
+    list[index][name] = value;
+    setOptionList(list);
   };
 
-  const listMoreRemove = (index) => {
-    const items = [...listMore];
-    items.splice(index, 1);
-    setListMore(items);
-  }
+  const handleServiceRemove = (index) => {
+    const list = [...optionList];
+    list.splice(index, 1);
+    setOptionList(list);
+  };
+
+  const handleServiceAdd = () => {
+    setOptionList([...optionList, { option: "" }]);
+  };
+
   return (
     <>
-      <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+      <Form.Group className="mb-3" controlId="flow-body-interactive">
         <Form.Label>Body</Form.Label>
         <Form.Control as="textarea" rows={3} />
       </Form.Group>
@@ -56,32 +55,39 @@ const InteractiveWidget = () => {
           </ToggleButton>
         ))}
       </ButtonGroup>
-      {listMore.map((singleItem, index) => (
-        <Form.Group key={index} className="mb-3 add-more" controlId={"controlInput" + index}>
-          <div className="mb-3">
-            <Form.Control
-              type="text"
-              placeholder="Add Your Label"
-            />
-            {
-              listMore.length > 1 &&
-              (
-                <Button className="mb-3" variant="danger" onClick={listMoreRemove}>
+
+      <div className="form-field">
+        {/* <label htmlFor="option">Configure Options</label> */}
+        {optionList.map((singleOption, index) => (
+          // <Form.Group key={index} className="mb-3 add-more" controlId={"controlInput" + index}>
+            <div key={index} className="mb-3 add-more options">
+            <div className="first-division">
+              <input
+                className="form-control"
+                name="option"
+                type="text"
+                id={"options" + index}
+                value={singleOption.option}
+                onChange={(e) => handleServiceChange(e, index)}
+                required
+              />
+
+            </div>
+            <div className="second-division">
+              {optionList.length !== 1 && (
+                <Button className="mb-3" variant="danger" onClick={() => {handleServiceRemove(index)}}>
                   <FontAwesomeIcon icon="fa-solid fa-trash" />
                 </Button>
-              )
-            }
-            {listMore.length - 1 == index && listMore.length < 4 &&
-              (
-                <Button className="mb-3" variant="primary" onClick={handleListAdd}>
-                  <FontAwesomeIcon icon="fa-solid fa-plus-square" />
+              )}
+              {optionList.length - 1 === index && optionList.length < 4 && (
+                <Button className="mb-3" variant="primary" onClick={handleServiceAdd}>
+                  <FontAwesomeIcon icon="fa-solid fa-plus-square" /> Add Options
                 </Button>
-              )
-            }
-
-          </div>
-        </Form.Group>
-      ))}
+              )}
+            </div>
+            </div>
+        ))}
+      </div>      
     </>
   );
 }

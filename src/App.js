@@ -13,8 +13,11 @@ import ReactFlow, {
   ReactFlowProvider,
   applyEdgeChanges, 
   applyNodeChanges,
+  getIncomers,
+  getOutgoers,
+  getConnectedEdges,  
 } from 'reactflow';
-import BlockDrawer from './components/BlockDrawer';
+// import BlockDrawer from './components/BlockDrawer';
 import ContextMenu from './components/ContextMenu';
 import { initialEdges, initialNodes } from './components/nodes-and-edges';
 import ButtonEdge from './ButtonEdge';
@@ -25,19 +28,17 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import Button from 'react-bootstrap/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// const onNodeDragStart = (event, node) => console.log('drag start', node);
-// const onNodeDragStop = (event, node) => console.log('drag stop', node);
-// const onPaneClick = (event) => console.log('onPaneClick', event);
-// const onPaneContextMenu = (event) => console.log('onPaneContextMenu', event);
+
+
 const flowKey = 'example-flow';
 const proOptions = {hideAttribution: true}
 const edgeTypes = {buttonedge: ButtonEdge, };
 
 const InteractionFlow = () => {
-  // const nodeTypes = {textUpdater: CustomNode};
+  // const nodeTypes = {customNode: CustomNode};
   const nodeTypes = useMemo(
     () => ({
-      textUpdater: (props) => <CustomNode onConfigNode={onConfigNode} onDeleteNode={onDeleteNode} {...props} />,
+      customNode: (props) => <CustomNode onConfigNode={onConfigNode} onDeleteNode={onDeleteNode} {...props} />,
     }), []
   );
   const onAddHandle = curNId => {
@@ -47,12 +48,17 @@ const InteractionFlow = () => {
     setCurrentNodeId(curNid);
     toggleDrawer();
   }
-  const onDeleteNode = id => {
-    // setNodes((nodes) => nodes.filter((node) => node.id !== id));
-    // setEdges((edges) => edges.filter((edge) => edge.source !== id));
-  };
+
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+  const reactFlow = useReactFlow()
+  const onDeleteNode = id => {
+    setNodes((nodes) => nodes.filter((node) => node.id !== id));
+    setEdges((edges) => edges.filter((edge) => edge.source !== id));
+    setEdges((edges) => edges.filter((edge) => edge.target !== id));
+  };
+  // console.log(nodes)
+  // console.log(edges)
   // const [nodes, setNodes] = useState(initialNodes);
   // const [edges, setEdges] = useState(initialEdges);
   const [menu, setMenu] = useState(null);
@@ -68,6 +74,27 @@ const InteractionFlow = () => {
   //   [setEdges]
   // );
   const onConnect = useCallback((params) => setEdges((els) => addEdge(params, els)), [setEdges]);
+
+  // const onNodesDelete = useCallback(
+  //   (deleted) => {
+  //     setEdges(
+  //       deleted.reduce((acc, node) => {
+  //         const incomers = getIncomers(node, nodes, edges);
+  //         const outgoers = getOutgoers(node, nodes, edges);
+  //         const connectedEdges = getConnectedEdges([node], edges);
+
+  //         const remainingEdges = acc.filter((edge) => !connectedEdges.includes(edge));
+
+  //         const createdEdges = incomers.flatMap(({ id: source }) =>
+  //           outgoers.map(({ id: target }) => ({ id: `${source}->${target}`, source, target }))
+  //         );
+
+  //         return [...remainingEdges, ...createdEdges];
+  //       }, edges)
+  //     );
+  //   },
+  //   [nodes, edges]
+  // );  
   const [captureZoomClick, setCaptureZoomClick] = useState(true);
   const [captureElementClick, setCaptureElementClick] = useState(true);
   const defaultEdgeOptions = { animated: true, markerEnd: {type: MarkerType.Arrow}, type: 'buttonedge', };
@@ -146,7 +173,7 @@ const InteractionFlow = () => {
           id: 'interaction-'+(nC+1),
           sourcePosition: 'right',
           targetPosition: 'left',
-          type: 'textUpdater',
+          type: 'customNode',
           position: { x: xPos.current, y: yPos.current },
           data: { label: "Node "+(nC+1) }
         }
@@ -178,6 +205,7 @@ const InteractionFlow = () => {
       nodes={nodes}
       ref= {ref}
       edges={edges}
+      // onNodesDelete={onNodesDelete}
       onNodesChange={onNodesChange}
       onEdgesChange={onEdgesChange}
       onEdgeUpdate={onEdgeUpdate}
@@ -197,7 +225,7 @@ const InteractionFlow = () => {
       panOnDrag={true}
       onPaneContextMenu={captureElementClick ? onNodeClick : undefined }
       onPaneClick={onPaneClick}
-      onNodeContextMenu={onNodeContextMenu}
+      // onNodeContextMenu={onNodeContextMenu}
       fitView
       proOptions={proOptions}
       onInit={setRfInstance}
@@ -214,7 +242,7 @@ const InteractionFlow = () => {
         <Button onClick={addTargetNode}  variant="secondary">
           <FontAwesomeIcon icon="fa-solid fa-arrow-left" /> End
         </Button>
-        <BlockDrawer currentNodeId={currentNodeId} isOpen={isOpen} toggleDrawer={toggleDrawer} onAddHandle={onAddHandle} />
+        {/* <BlockDrawer currentNodeId={currentNodeId} isOpen={isOpen} toggleDrawer={toggleDrawer} onAddHandle={onAddHandle} /> */}
       </Panel>
       <Panel position='top-right'>
         <Button onClick={onSave}  variant="secondary">

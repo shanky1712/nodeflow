@@ -93,18 +93,30 @@ html, body {
 .context-menu button:hover {
   background: white;
 }
-.react-flow__node-textUpdater {
+.react-flow__node-customNode {
   padding: 10px;
   border-radius: 3px;
-  width: 100px;
+  width: 200px;
   font-size: 12px;
   color: #222;
-  background-color: #0d0784;
   text-align: center;
   border-width: 1px;
   border-style: solid;
   border-color: #0d0784;
   background-color: white;
+  /* background: #efe7dd url(https://cloud.githubusercontent.com/assets/398893/15136779/4e765036-1639-11e6-9201-67e728e86f39.jpg) repeat; */
+}
+.react-flow__node.react-flow__node-output {
+  padding: 5px;
+  border-radius: 3px;
+  width: 60px;
+  font-size: 12px;
+  color: white;
+  background-color: #6c757d;
+  text-align: center;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #6c757d;
 }
 .raw-btn{
   background: transparent;
@@ -134,11 +146,17 @@ button.circle{
 }
 .react-flow__handle.source{
   background-color: green;
+  border: 1px solid black;
+  padding: 5px;  
 }
 .react-flow__handle.target{
   background-color: orange;
+  border: 1px solid black;
+  padding: 5px;
 }
-
+.react-flow__node.react-flow__node-output .react-flow__handle.target{
+  background-color: red;
+}
 /* .modal::backdrop {
   background: hsl(0 0% 0% / 50%);
 }
@@ -191,4 +209,82 @@ button.circle{
   width: 90%;
   float: left;
   margin-right: 10px;
+}
+
+
+
+.react-flow__node-customNode{
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: url('https://cloud.githubusercontent.com/assets/398893/15136779/4e765036-1639-11e6-9201-67e728e86f39.jpg');
+}
+.speech-wrapper{
+  padding: 10px;
+  text-align:left;
+  .bubble{
+    width: 100%;
+    height: auto;
+    display: block;
+    background: #f5f5f5;
+    border-radius: 4px;
+    box-shadow: 2px 8px 5px #000;
+    position: relative;
+    margin: 0 0 25px;
+    &.alt{
+      margin: 0 0 0 60px;
+    }
+    .txt{
+      padding: 8px 55px 8px 14px;
+      .name{
+        font-weight: 600;
+        font-size: 12px;
+        margin: 0 0 4px;
+        color: #3498db;
+        span{
+          font-weight: normal;
+          color: #b3b3b3;
+        }
+        &.alt{
+          color: #2ecc71;
+        }
+      }
+      .message{
+        font-size: 12px;
+        margin: 0;
+        color: #2b2b2b;
+      }
+      .timestamp{
+        font-size: 11px;
+        position: absolute;
+        bottom: 8px;
+        right: 10px;
+        text-transform: uppercase; color: #999
+      }
+    }
+    .bubble-arrow {
+      position: absolute;
+      width: 0;
+      bottom:42px;
+      left: -16px;
+      height: 0;
+      &.alt{
+        right: -2px;      
+        bottom: 40px;
+        left: auto;
+      }
+    }
+    .bubble-arrow:after {
+      content: "";
+      position: absolute;
+      border: 0 solid transparent;
+      border-top: 9px solid #f5f5f5;
+      border-radius: 0 20px 0;
+      width: 15px;
+      height: 30px;
+      transform: rotate(145deg);
+    }
+    .bubble-arrow.alt:after {
+      transform: rotate(45deg) scaleY(-1);
+    }
+  }
 }

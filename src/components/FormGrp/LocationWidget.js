@@ -17,7 +17,7 @@ const LocationWidget = () => {
 
   return (
     <>
-      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+      <Form.Group className="mb-3" controlId="flow-loc-name">
         <Form.Label>Name</Form.Label>
         <Form.Control
           type="text"
@@ -54,14 +54,14 @@ const LocationWidget = () => {
           <Form.Control />
         </Form.Group>
       </Row>
-      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+      <Form.Group className="mb-3" controlId="flow-loc-lat">
         <Form.Label>Latitude</Form.Label>
         <Form.Control
           type="text"
           placeholder="Latitude"
         />
       </Form.Group>
-      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+      <Form.Group className="mb-3" controlId="flow-loc-lng">
         <Form.Label>Longitude</Form.Label>
         <Form.Control
           type="text"

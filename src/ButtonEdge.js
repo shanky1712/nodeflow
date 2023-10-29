@@ -1,15 +1,15 @@
-import React from "react"
-import { BaseEdge, EdgeLabelRenderer, getBezierPath } from "reactflow"
+import React, {useCallback} from "react"
+import { BaseEdge, EdgeLabelRenderer, getBezierPath, useReactFlow } from "reactflow"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import "./buttonedge.css"
 
 
 
-const onEdgeClick = (evt, id) => {
-  evt.stopPropagation()
+// const onEdgeClick = (evt, id) => {
+//   evt.stopPropagation()
   
-  alert(`remove ${id}`)
-}
+//   alert(`remove ${id}`)
+// }
 
 export default function CustomEdge({
   id,
@@ -30,7 +30,14 @@ export default function CustomEdge({
     targetY,
     targetPosition
   })
-
+  const reactFlow = useReactFlow()
+  const onEdgeClick = useCallback(
+    (evt, id) => {
+      evt.stopPropagation()
+      reactFlow.setEdges((edges) => edges.filter((edge) => edge.id !== id))
+    },
+    [reactFlow]
+  )
   return (
     <>
       <BaseEdge path={edgePath} markerEnd={markerEnd} style={style} />

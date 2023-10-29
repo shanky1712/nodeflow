@@ -1,15 +1,8 @@
 import React, { useState } from "react";
 import 'react-modern-drawer/dist/index.css';
-// import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-// import Row from 'react-bootstrap/Row';
+
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
-// import Button from 'react-bootstrap/Button';
-// import ButtonGroup from 'react-bootstrap/ButtonGroup';
-// import InputGroup from 'react-bootstrap/InputGroup';
-// import ToggleButton from 'react-bootstrap/ToggleButton';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import TextWidget from '././components/FormGrp/TextWidget'
 import ImageWidget from '././components/FormGrp/ImageWidget'
 import VideoWidget from '././components/FormGrp/VideoWidget'
@@ -21,55 +14,54 @@ import InteractiveWidget from '././components/FormGrp/InteractiveWidget'
 import TemplateWidget from '././components/FormGrp/TemplateWidget'
 const CustomForm = () => {
     const handleSaveModal = () => { }
-    
-
+    const [defaultTab, setDefaultTab] = useState("text");
     return (
-        <Form>
-          <Tabs defaultActiveKey="text" id="uncontrolled-tab-example" className="mb-3" >
+        <div>
+          <Tabs defaultActiveKey = {defaultTab} id="uncontrolled-tab-example" className="mb-3" >
             {/* Text */}
-            <Tab eventKey="text" title="Text">
+            <Tab eventKey="text" title="Text" onClick={(e) => setDefaultTab("text")}>
               <TextWidget />
             </Tab>
             {/* Image */}
-            <Tab eventKey="image" title="Image">
+            <Tab eventKey="image" title="Image" onClick={(e) => setDefaultTab("image")}>
               <ImageWidget />
             </Tab>
             {/* Video */}
-            <Tab eventKey="video" title="Video">
+            <Tab eventKey="video" title="Video" onClick={(e) => setDefaultTab("video")}>
               <VideoWidget />
             </Tab>
 
             {/* Document */}
-            <Tab eventKey="document" title="Docs">
+            <Tab eventKey="document" title="Docs" onClick={(e) => setDefaultTab("document")}>
               <DocWidget />
             </Tab>
 
             {/* Audio */}
-            <Tab eventKey="audio" title="Audio">
+            <Tab eventKey="audio" title="Audio" onClick={(e) => setDefaultTab("audio")}>
               <AudioWidget />
             </Tab>
 
             {/* Location */}
-            <Tab eventKey="location" title="Place">
+            <Tab eventKey="location" title="Place" onClick={(e) => setDefaultTab("location")}>
               <LocationWidget />
             </Tab>
 
             {/* Contact */}
-            <Tab eventKey="contact" title="Contacts">
+            <Tab eventKey="contact" title="Contacts" onClick={(e) => setDefaultTab("contact")}>
               <ContactWidget/>
             </Tab>
 
             {/* Interactive */}
-            <Tab eventKey="interactive" title="Interactive">
+            <Tab eventKey="interactive" title="Interactive" onClick={(e) => setDefaultTab("interactive")}>
               <InteractiveWidget />
             </Tab>
 
             {/* Templates */}
-            <Tab eventKey="templates" title="Templates">
+            <Tab eventKey="templates" title="Templates" onClick={(e) => setDefaultTab("templates")}>
               <TemplateWidget/>
             </Tab>
           </Tabs>
-      </Form>
+      </div>
     )
 }
 export default CustomForm

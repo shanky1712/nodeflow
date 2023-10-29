@@ -1,8 +1,8 @@
 import React, {useState, useRef, useEffect} from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-const Popup = ({ isOpen, hasCloseBtn=true, onClose, children }) => {
+import Form from 'react-bootstrap/Form';
+const Popup = ({ isOpen, onClose, children }) => {
     const [isModalOpen, setModalOpen] = useState(isOpen)
     const modalRef = useRef(null)
 
@@ -13,26 +13,9 @@ const Popup = ({ isOpen, hasCloseBtn=true, onClose, children }) => {
         setModalOpen(false)
     }
 
-    const handleKeyDown = event => {
-        if (event.key == "Escape") {
-            handleCloseModal()
-        }
-    }
-
     useEffect(() => {
         setModalOpen(isOpen)
     }, [isOpen])
-
-    useEffect(() => {
-        const modalElement = modalRef.current
-        if (modalElement) {
-            if (isModalOpen) {
-                modalElement.showModal()
-            } else {
-                modalElement.close()
-            }
-        }
-    }, [isModalOpen])
 
     const [isLoading, setLoading] = useState(false);
 
@@ -48,11 +31,16 @@ const Popup = ({ isOpen, hasCloseBtn=true, onClose, children }) => {
       }
     }, [isLoading]);
   
-    const handleClick = () => setLoading(true);
+    const handleSaveNodeForm = (event) => {
+      event.preventDefault();
+      alert(`remove `)
+      setLoading(true);
+    }
 
     return (
       <>
         <Modal show={isOpen} onHide={handleCloseModal} size="lg">
+          <Form>
           <Modal.Header closeButton>
             <Modal.Title>Message Types</Modal.Title>
           </Modal.Header>
@@ -63,10 +51,11 @@ const Popup = ({ isOpen, hasCloseBtn=true, onClose, children }) => {
             <Button variant="secondary" onClick={handleCloseModal}>
               Close
             </Button>
-            <Button variant="primary" disabled={isLoading} onClick={!isLoading ? handleClick : null} >
+            <Button variant="primary" type="submit" disabled={isLoading} onClick={!isLoading ? handleSaveNodeForm : null} >
               {isLoading ? 'Loading…' : 'Save Changes'}
             </Button>
           </Modal.Footer>
+          </Form>
         </Modal>
       </>
     )
