@@ -1,16 +1,15 @@
 import { useState } from "react";
 import Form from 'react-bootstrap/Form';
 const AudioWidget = () => {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  let formStateData = {
+    file: '',
+    audioUrl: '',
+  };
+  const [formData, setFormData] = useState(formStateData);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // alert(`Name: ${formData.name}, Email: ${formData.email}, Message: ${formData.message}`);
   };
 
   return (
@@ -24,6 +23,10 @@ const AudioWidget = () => {
         <Form.Control
           type="text"
           placeholder="Paste Audio URL"
+
+          name="audioUrl"
+          onChange={handleChange}
+          value={formData.audioUrl || ""}
         />
       </Form.Group>
     </>

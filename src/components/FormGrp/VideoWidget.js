@@ -1,16 +1,16 @@
 import { useState } from "react";
 import Form from 'react-bootstrap/Form';
 const VideoWidget = () => {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  let formStateData = {
+    file: '',
+    videoUrl: '',
+    captionTxt: '',
+  };
+  const [formData, setFormData] = useState(formStateData);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // alert(`Name: ${formData.name}, Email: ${formData.email}, Message: ${formData.message}`);
   };
 
   return (
@@ -24,6 +24,10 @@ const VideoWidget = () => {
         <Form.Control
           type="text"
           placeholder="Paste Video URL"
+
+          name="videoUrl"
+          onChange={handleChange}
+          value={formData.videoUrl || ""}
         />
       </Form.Group>
       <Form.Group className="mb-3" controlId="flow-video-caption">
@@ -31,6 +35,10 @@ const VideoWidget = () => {
         <Form.Control
           type="text"
           placeholder="Caption Text"
+
+          name="captionTxt"
+          onChange={handleChange}
+          value={formData.captionTxt || ""}
         />
       </Form.Group>
     </>

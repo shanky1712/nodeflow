@@ -1,18 +1,17 @@
 import { useState } from "react";
 import Form from 'react-bootstrap/Form';
 const DocWidget = () => {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  let formStateData = {
+    file: '',
+    docUrl: '',
+    fileName: '',
+  };
+  const [formData, setFormData] = useState(formStateData);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // alert(`Name: ${formData.name}, Email: ${formData.email}, Message: ${formData.message}`);
-  };
-
   return (
     <>
       <Form.Group controlId="formFile" className="mb-3">
@@ -24,6 +23,10 @@ const DocWidget = () => {
         <Form.Control
           type="text"
           placeholder="Paste Document URL"
+
+          name="docUrl"
+          onChange={handleChange}
+          value={formData.docUrl || ""}
         />
       </Form.Group>
       <Form.Group className="mb-3" controlId="flow-doc-file-name">
@@ -31,6 +34,10 @@ const DocWidget = () => {
         <Form.Control
           type="text"
           placeholder="File name"
+
+          name="fileName"
+          onChange={handleChange}
+          value={formData.fileName || ""}
         />
       </Form.Group>
     </>

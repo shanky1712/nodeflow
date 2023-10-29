@@ -1,21 +1,21 @@
 import React, { useState, useCallback, useRef, useMemo, memo } from 'react';
-import ReactFlow, { 
+import ReactFlow, {
   useNodesState,
   useEdgesState,
   addEdge,
   updateEdge,
   removeElements,
   Controls,
-  Panel, 
+  Panel,
   Background,
   useReactFlow,
   MarkerType,
   ReactFlowProvider,
-  applyEdgeChanges, 
+  applyEdgeChanges,
   applyNodeChanges,
   getIncomers,
   getOutgoers,
-  getConnectedEdges,  
+  getConnectedEdges,
 } from 'reactflow';
 // import BlockDrawer from './components/BlockDrawer';
 import ContextMenu from './components/ContextMenu';
@@ -31,8 +31,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
 const flowKey = 'example-flow';
-const proOptions = {hideAttribution: true}
-const edgeTypes = {buttonedge: ButtonEdge, };
+const proOptions = { hideAttribution: true }
+const edgeTypes = { buttonedge: ButtonEdge, };
 
 const InteractionFlow = () => {
   // const nodeTypes = {customNode: CustomNode};
@@ -42,7 +42,7 @@ const InteractionFlow = () => {
     }), []
   );
   const onAddHandle = curNId => {
-    console.log('Current NID: '+curNId);
+    console.log('Current NID: ' + curNId);
   }
   const onConfigNode = curNid => {
     setCurrentNodeId(curNid);
@@ -97,7 +97,7 @@ const InteractionFlow = () => {
   // );  
   const [captureZoomClick, setCaptureZoomClick] = useState(true);
   const [captureElementClick, setCaptureElementClick] = useState(true);
-  const defaultEdgeOptions = { animated: true, markerEnd: {type: MarkerType.Arrow}, type: 'buttonedge', };
+  const defaultEdgeOptions = { animated: true, markerEnd: { type: MarkerType.Arrow }, type: 'buttonedge', };
 
   const edgeUpdateSuccessful = useRef(true);
   const onEdgeUpdateStart = useCallback(() => {
@@ -115,7 +115,7 @@ const InteractionFlow = () => {
     }
 
     edgeUpdateSuccessful.current = true;
-  },[]);
+  }, []);
   const onSave = useCallback(() => {
     if (rfInstance) {
       console.log('On Save');
@@ -151,7 +151,7 @@ const InteractionFlow = () => {
   const [isOpen, setIsOpen] = useState(false)
 
   const toggleDrawer = () => {
-      setIsOpen((prevState) => !prevState)
+    setIsOpen((prevState) => !prevState)
   }
   const onNodeClick = (event, node) => {
     // setCurrentNode(node);
@@ -170,12 +170,12 @@ const InteractionFlow = () => {
       return [
         ...nodes,
         {
-          id: 'interaction-'+(nC+1),
+          id: 'interaction-' + (nC + 1),
           sourcePosition: 'right',
           targetPosition: 'left',
           type: 'customNode',
           position: { x: xPos.current, y: yPos.current },
-          data: { label: "Node "+(nC+1) }
+          data: { label: "Node " + (nC + 1) }
         }
       ];
     });
@@ -189,7 +189,7 @@ const InteractionFlow = () => {
       return [
         ...nodes,
         {
-          id: 'interaction-'+(nC+1),
+          id: 'interaction-' + (nC + 1),
           sourcePosition: 'right',
           targetPosition: 'left',
           type: 'output',
@@ -200,10 +200,10 @@ const InteractionFlow = () => {
     });
   }, []);
   return (
-    
+
     <ReactFlow
       nodes={nodes}
-      ref= {ref}
+      ref={ref}
       edges={edges}
       // onNodesDelete={onNodesDelete}
       onNodesChange={onNodesChange}
@@ -223,7 +223,7 @@ const InteractionFlow = () => {
       // onNodeDragStart={onNodeDragStart}
       // onNodeDragStop={onNodeDragStop}
       panOnDrag={true}
-      onPaneContextMenu={captureElementClick ? onNodeClick : undefined }
+      onPaneContextMenu={captureElementClick ? onNodeClick : undefined}
       onPaneClick={onPaneClick}
       // onNodeContextMenu={onNodeContextMenu}
       fitView
@@ -232,30 +232,30 @@ const InteractionFlow = () => {
     >
       {/* <MiniMap /> */}
       <Controls />
-      <Background/>
+      <Background />
       {menu && <ContextMenu onClick={onPaneClick} {...menu} />}
       <Panel position="top-left">
-        <Button onClick={addNode}  variant="secondary">
+        <Button onClick={addNode} variant="secondary">
           <FontAwesomeIcon icon="fa-solid fa-arrows-h" /> Custom
         </Button>
         &nbsp;
-        <Button onClick={addTargetNode}  variant="secondary">
+        <Button onClick={addTargetNode} variant="secondary">
           <FontAwesomeIcon icon="fa-solid fa-arrow-left" /> End
         </Button>
         {/* <BlockDrawer currentNodeId={currentNodeId} isOpen={isOpen} toggleDrawer={toggleDrawer} onAddHandle={onAddHandle} /> */}
       </Panel>
       <Panel position='top-right'>
-        <Button onClick={onSave}  variant="secondary">
+        <Button onClick={onSave} variant="secondary">
           <FontAwesomeIcon icon="fa-solid fa-save" /> Save
         </Button>
       </Panel>
     </ReactFlow>
-    
+
   );
 };
 
-export default function () { 
-  return(
+export default function () {
+  return (
     <ReactFlowProvider>
       <InteractionFlow />
     </ReactFlowProvider>
