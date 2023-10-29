@@ -53,10 +53,10 @@ function CustomNode({ id, data, isConnectable, onDeleteNode }) {
           <div className="bubble-arrow alt"></div>
         </div>
       </div>       */}
-      <Popup isOpen={isNewsletterModalOpen} onClose={handleCloseNewsletterModal}>
-        <button className='raw-btn success' onClick={() => setSourceHandles([...sourceHandles, {}])}>
+      <Popup isOpen={isNewsletterModalOpen} onClose={handleCloseNewsletterModal} sourceHandles={sourceHandles} setSourceHandles={setSourceHandles}>
+        {/* <button className='raw-btn success' onClick={() => setSourceHandles([...sourceHandles, {}])}>
           <FontAwesomeIcon icon="fa-solid fa-grip-vertical" />
-        </button>
+        </button> */}
         <CustomForm />
       </Popup>
       <Handle type="target" position={Position.Left} />

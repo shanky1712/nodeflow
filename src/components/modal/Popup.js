@@ -2,7 +2,7 @@ import React, {useState, useRef, useEffect} from "react";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
-const Popup = ({ isOpen, onClose, children }) => {
+const Popup = ({ isOpen, onClose, sourceHandles, setSourceHandles, children }) => {
     const [isModalOpen, setModalOpen] = useState(isOpen)
     const modalRef = useRef(null)
 
@@ -34,6 +34,7 @@ const Popup = ({ isOpen, onClose, children }) => {
     const handleSaveNodeForm = (event) => {
       event.preventDefault();
       alert(`remove `)
+      setSourceHandles([...sourceHandles, {}])
       setLoading(true);
     }
 

@@ -69,7 +69,7 @@ const InteractiveWidget = () => {
                 id={"options" + index}
                 value={singleOption.option}
                 onChange={(e) => handleServiceChange(e, index)}
-                required
+                // required
               />
 
             </div>
