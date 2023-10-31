@@ -2,18 +2,18 @@ import { useState } from "react";
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-const LocationWidget = () => {
-  let formStateData = {
-    name: '',
-    addr1: '',
-    addr2: '',
-    city: '',
-    state: '',
-    zip: '',
-    lat: '',
-    lng: '',
-  };
-  const [formData, setFormData] = useState(formStateData);
+const LocationWidget = ({formData, setFormData}) => {
+  // let formStateData = {
+  //   name: '',
+  //   addr1: '',
+  //   addr2: '',
+  //   city: '',
+  //   state: '',
+  //   zip: '',
+  //   lat: '',
+  //   lng: '',
+  // };
+  // const [formData, setFormData] = useState(formStateData);
 
   const handleChange = (event) => {
     const { name, value } = event.target;

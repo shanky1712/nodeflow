@@ -1,12 +1,12 @@
 import { useState } from "react";
 import Form from 'react-bootstrap/Form';
-const ImageWidget = () => {
+const ImageWidget = ({formData, setFormData}) => {
   let formStateData = {
     file: '',
     imageUrl: '',
     captionTxt: '',
   };
-  const [formData, setFormData] = useState(formStateData);
+  // const [formData, setFormData] = useState(formStateData);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -24,7 +24,6 @@ const ImageWidget = () => {
         <Form.Control
           type="text"
           placeholder="Paste Image URL"
-
           name="imageUrl"
           onChange={handleChange}
           value={formData.imageUrl || ""}

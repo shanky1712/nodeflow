@@ -13,52 +13,54 @@ import ContactWidget from '././components/FormGrp/ContactWidget'
 import InteractiveWidget from '././components/FormGrp/InteractiveWidget'
 import TemplateWidget from '././components/FormGrp/TemplateWidget'
 const CustomForm = ({formData, setFormData, defaultTab, setDefaultTab}) => {
-  const handleSaveModal = () => { }
-  
+  const handleTabSelect = key => {
+    setDefaultTab(key)
+   }
+  console.log(defaultTab)
   return (
     <div>
-      <Tabs defaultActiveKey={defaultTab} id="uncontrolled-tab-example" className="mb-3" >
+      <Tabs defaultActiveKey={defaultTab} id="uncontrolled-tab-example" className="mb-3" onSelect={handleTabSelect} >
         {/* Text */}
-        <Tab eventKey="text" title="Text" onClick={(e) => setDefaultTab("text")}>
+        <Tab eventKey="text" title="Text" >
           <TextWidget formData={formData} setFormData={setFormData} />
         </Tab>
         {/* Image */}
-        <Tab eventKey="image" title="Image" onClick={(e) => setDefaultTab("image")}>
-          <ImageWidget />
+        <Tab eventKey="image" title="Image">
+          <ImageWidget formData={formData} setFormData={setFormData} />
         </Tab>
         {/* Video */}
-        <Tab eventKey="video" title="Video" onClick={(e) => setDefaultTab("video")}>
-          <VideoWidget />
+        <Tab eventKey="video" title="Video">
+          <VideoWidget formData={formData} setFormData={setFormData} />
         </Tab>
 
         {/* Document */}
-        <Tab eventKey="document" title="Docs" onClick={(e) => setDefaultTab("document")}>
-          <DocWidget />
+        <Tab eventKey="document" title="Docs" >
+          <DocWidget formData={formData} setFormData={setFormData} />
         </Tab>
 
         {/* Audio */}
-        <Tab eventKey="audio" title="Audio" onClick={(e) => setDefaultTab("audio")}>
-          <AudioWidget />
+        <Tab eventKey="audio" title="Audio" >
+          <AudioWidget formData={formData} setFormData={setFormData} />
         </Tab>
 
         {/* Location */}
-        <Tab eventKey="location" title="Place" onClick={(e) => setDefaultTab("location")}>
-          <LocationWidget />
+        <Tab eventKey="location" title="Place" >
+          <LocationWidget formData={formData} setFormData={setFormData} />
         </Tab>
 
         {/* Contact */}
-        <Tab eventKey="contact" title="Contacts" onClick={(e) => setDefaultTab("contact")}>
-          <ContactWidget />
+        <Tab eventKey="contact" title="Contacts" >
+          <ContactWidget formData={formData} setFormData={setFormData} />
         </Tab>
 
         {/* Interactive */}
-        <Tab eventKey="interactive" title="Interactive" onClick={(e) => setDefaultTab("interactive")}>
-          <InteractiveWidget />
+        <Tab eventKey="interactive" title="Interactive" >
+          <InteractiveWidget formData={formData} setFormData={setFormData} />
         </Tab>
 
         {/* Templates */}
-        <Tab eventKey="templates" title="Templates" onClick={(e) => setDefaultTab("templates")}>
-          <TemplateWidget />
+        <Tab eventKey="templates" title="Templates">
+          <TemplateWidget formData={formData} setFormData={setFormData} />
         </Tab>
       </Tabs>
     </div>

@@ -1,12 +1,12 @@
 import { useState } from "react";
 import Form from 'react-bootstrap/Form';
-const DocWidget = () => {
-  let formStateData = {
-    file: '',
-    docUrl: '',
-    fileName: '',
-  };
-  const [formData, setFormData] = useState(formStateData);
+const DocWidget = ({formData, setFormData}) => {
+  // let formStateData = {
+  //   file: '',
+  //   docUrl: '',
+  //   fileName: '',
+  // };
+  // const [formData, setFormData] = useState(formStateData);
 
   const handleChange = (event) => {
     const { name, value } = event.target;

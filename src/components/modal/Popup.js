@@ -37,13 +37,6 @@ const Popup = ({ nodes, setNodes, getData, isOpen, onClose, sourceHandles, setSo
   const curNodeId = useNodeId();
   const handleSaveNodeForm = (event) => {
     event.preventDefault();
-    // alert(`remove `+ curNodeId)
-    nodes.map((node, index) => {
-      if (node.id === curNodeId)
-        console.log(node.data)
-        console.log(defaultTab)
-        console.log(formData)
-    })
     const newState = nodes.map(node => {
       if (node.id === curNodeId) {
 
@@ -58,7 +51,12 @@ const Popup = ({ nodes, setNodes, getData, isOpen, onClose, sourceHandles, setSo
       return node;
     });
     setNodes(newState);
-    setSourceHandles([...sourceHandles, {}])
+    if (defaultTab === 'interactive') {
+      setSourceHandles([...sourceHandles, {}])
+    }
+    else {
+      setSourceHandles([{}])
+    }
     setLoading(true);
   }
   

@@ -4,8 +4,8 @@ import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-const InteractiveWidget = () => {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+const InteractiveWidget = ({formData, setFormData}) => {
+  // const [formData, setFormData] = useState({ name: "", email: "", message: "" });
 
   const [radioValue, setRadioValue] = useState('1');
   const radios = [
@@ -15,11 +15,13 @@ const InteractiveWidget = () => {
 
   const [optionList, setOptionList] = useState([{ option: "" }]);
 
-  const handleServiceChange = (e, index) => {
+  const handleOptionLblChange = (e, index) => {
     const { name, value } = e.target;
     const list = [...optionList];
     list[index][name] = value;
+    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
     setOptionList(list);
+    console.log(optionList)
   };
 
   const handleServiceRemove = (index) => {
@@ -31,12 +33,21 @@ const InteractiveWidget = () => {
   const handleServiceAdd = () => {
     setOptionList([...optionList, { option: "" }]);
   };
-
+  const handleBodyChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+  };
+  
+  const optionTypeChange = (event) => {
+    const { name, value } = event.target;
+    setRadioValue(value)
+    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+  }
   return (
     <>
       <Form.Group className="mb-3" controlId="flow-body-interactive">
         <Form.Label>Body</Form.Label>
-        <Form.Control as="textarea" rows={3} />
+        <Form.Control as="textarea" rows={3} name='interactiveBody' onChange={handleBodyChange}/>
       </Form.Group>
       <ButtonGroup className="mb-3">
         {radios.map((radio, idx) => (
@@ -46,10 +57,10 @@ const InteractiveWidget = () => {
             type="radio"
             // variant={idx % 2 ? 'outline-success' : 'outline-danger'}
             variant="outline-success"
-            name="radio"
+            name="optionType"
             value={radio.value}
             checked={radioValue === radio.value}
-            onChange={(e) => setRadioValue(e.currentTarget.value)}
+            onChange={optionTypeChange}
           >
             {radio.name}
           </ToggleButton>
@@ -64,11 +75,11 @@ const InteractiveWidget = () => {
             <div className="first-division">
               <input
                 className="form-control"
-                name="option"
+                name={"options" + index}
                 type="text"
                 id={"options" + index}
                 value={singleOption.option}
-                onChange={(e) => handleServiceChange(e, index)}
+                onChange={(e) => handleOptionLblChange(e, index)}
                 // required
               />
 

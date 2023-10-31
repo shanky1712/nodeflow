@@ -1,12 +1,12 @@
 import { useState } from "react";
 import Form from 'react-bootstrap/Form';
-const VideoWidget = () => {
-  let formStateData = {
-    file: '',
-    videoUrl: '',
-    captionTxt: '',
-  };
-  const [formData, setFormData] = useState(formStateData);
+const VideoWidget = ({formData, setFormData}) => {
+  // let formStateData = {
+  //   file: '',
+  //   videoUrl: '',
+  //   captionTxt: '',
+  // };
+  // const [formData, setFormData] = useState(formStateData);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
