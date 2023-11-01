@@ -3,10 +3,8 @@ import { Handle, Position, useUpdateNodeInternals, NodeToolbar } from 'reactflow
 import Popup from './components/modal/Popup';
 import CustomForm from './CustomForm';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-function CustomNode({ id, data, isConnectable, onDeleteNode, nodes, setNodes }) {
-  const onChange = useCallback((evt) => {
-    console.log(evt.target.value);
-  }, []);
+function CustomNode({ id, data, isConnectable, onDeleteNode }) {
+
   const updateNodeInternals = useUpdateNodeInternals();
   const [sourceHandles, setSourceHandles] = useState([]);
   useEffect(() => {
@@ -53,13 +51,7 @@ function CustomNode({ id, data, isConnectable, onDeleteNode, nodes, setNodes }) 
           <div className="bubble-arrow alt"></div>
         </div>
       </div>       */}
-      <Popup nodes={nodes} setNodes={setNodes} getData={data} isOpen={isNewsletterModalOpen} onClose={handleCloseNewsletterModal} sourceHandles={sourceHandles} setSourceHandles={setSourceHandles} />
-      {/* <Popup isOpen={isNewsletterModalOpen} onClose={handleCloseNewsletterModal} sourceHandles={sourceHandles} setSourceHandles={setSourceHandles}>
-        <button className='raw-btn success' onClick={() => setSourceHandles([...sourceHandles, {}])}>
-          <FontAwesomeIcon icon="fa-solid fa-grip-vertical" />
-        </button>
-        <CustomForm />
-      </Popup> */}
+      <Popup getData={data} isOpen={isNewsletterModalOpen} onClose={handleCloseNewsletterModal} sourceHandles={sourceHandles} setSourceHandles={setSourceHandles} />
       <Handle type="target" position={Position.Left} />
       {sourceHandles.map((sourceHandle, index) => (
         <div key={(index + 100)}>

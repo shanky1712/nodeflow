@@ -15,11 +15,12 @@ import TemplateWidget from '././components/FormGrp/TemplateWidget'
 const CustomForm = ({formData, setFormData, defaultTab, setDefaultTab}) => {
   const handleTabSelect = key => {
     setDefaultTab(key)
+    setFormData({})
    }
-  console.log(defaultTab)
+  // console.log(defaultTab)
   return (
     <div>
-      <Tabs defaultActiveKey={defaultTab} id="uncontrolled-tab-example" className="mb-3" onSelect={handleTabSelect} >
+      <Tabs defaultActiveKey={defaultTab} id="flow-form" className="mb-3" onSelect={handleTabSelect} >
         {/* Text */}
         <Tab eventKey="text" title="Text" >
           <TextWidget formData={formData} setFormData={setFormData} />

@@ -38,7 +38,7 @@ const InteractionFlow = () => {
   // const nodeTypes = {customNode: CustomNode};
   const nodeTypes = useMemo(
     () => ({
-      customNode: (props) => <CustomNode onConfigNode={onConfigNode} onDeleteNode={onDeleteNode} nodes={nodes} setNodes={setNodes} {...props} />,
+      customNode: (props) => <CustomNode onConfigNode={onConfigNode} onDeleteNode={onDeleteNode} {...props} />,
     }), []
   );
   const onAddHandle = curNId => {
@@ -57,8 +57,10 @@ const InteractionFlow = () => {
     setEdges((edges) => edges.filter((edge) => edge.source !== id));
     setEdges((edges) => edges.filter((edge) => edge.target !== id));
   };
+  console.log('******')
   console.log(nodes)
   console.log(edges)
+  console.log('******')
   // const [nodes, setNodes] = useState(initialNodes);
   // const [edges, setEdges] = useState(initialEdges);
   const [menu, setMenu] = useState(null);
@@ -199,6 +201,22 @@ const InteractionFlow = () => {
       ];
     });
   }, []);
+  const { setViewport } = useReactFlow();
+  const onRestore = useCallback(() => {
+    const restoreFlow = async () => {
+      const flow = JSON.parse(localStorage.getItem(flowKey));
+
+      if (flow) {
+        const { x = 0, y = 0, zoom = 1 } = flow.viewport;
+        setNodes(flow.nodes || []);
+        setEdges(flow.edges || []);
+        setViewport({ x, y, zoom });
+      }
+    };
+
+    restoreFlow();
+  }, [setNodes, setViewport]);
+  
   return (
 
     <ReactFlow
@@ -245,6 +263,9 @@ const InteractionFlow = () => {
         {/* <BlockDrawer currentNodeId={currentNodeId} isOpen={isOpen} toggleDrawer={toggleDrawer} onAddHandle={onAddHandle} /> */}
       </Panel>
       <Panel position='top-right'>
+        <Button onClick={onRestore} variant="secondary">
+          <FontAwesomeIcon icon="fa-solid fa-save" /> restore
+        </Button>
         <Button onClick={onSave} variant="secondary">
           <FontAwesomeIcon icon="fa-solid fa-save" /> Save
         </Button>

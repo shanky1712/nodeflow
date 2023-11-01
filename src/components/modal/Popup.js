@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useNodeId } from 'reactflow';
+import { useNodeId, useStoreApi, useReactFlow } from 'reactflow';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import CustomForm from '../../CustomForm';
-const Popup = ({ nodes, setNodes, getData, isOpen, onClose, sourceHandles, setSourceHandles, children }) => {
+const Popup = ({ getData, isOpen, onClose, sourceHandles, setSourceHandles, children, ...props }) => {
   const [isModalOpen, setModalOpen] = useState(isOpen)
   const modalRef = useRef(null)
 
@@ -35,22 +35,40 @@ const Popup = ({ nodes, setNodes, getData, isOpen, onClose, sourceHandles, setSo
   const [formData, setFormData] = useState({});
   const [defaultTab, setDefaultTab] = useState("text");
   const curNodeId = useNodeId();
+  const store = useStoreApi();
+  const { setNodes } = useReactFlow();
   const handleSaveNodeForm = (event) => {
+    const { nodeInternals } = store.getState();
     event.preventDefault();
-    const newState = nodes.map(node => {
-      if (node.id === curNodeId) {
+    console.log("nodeInternals")
+    console.log(nodeInternals)
+    setNodes(
+      Array.from(nodeInternals.values()).map((node) => {
+        if (node.id === curNodeId) {
+          node.data = {
+            ...node.data,
+            formType: defaultTab, 
+            formData: formData,
+          };
+        }
 
-        const obj = node.data;
-        const newObj = { ...obj, formType: defaultTab, formData: formData };
+        return node;
+      })
+    );    
+    // const newState = nodes.map(node => {
+    //   if (node.id === curNodeId) {
 
-        console.log(node.data)
-        console.log(defaultTab)
-        console.log(formData)        
-        return {...node, data: newObj};
-      }
-      return node;
-    });
-    setNodes(newState);
+    //     const obj = node.data;
+    //     const newObj = { ...obj, formType: defaultTab, formData: formData };
+
+    //     console.log(node.data)
+    //     console.log(defaultTab)
+    //     console.log(formData)        
+    //     return {...node, data: newObj};
+    //   }
+    //   return node;
+    // });
+    // setNodes(newState);
     if (defaultTab === 'interactive') {
       setSourceHandles([...sourceHandles, {}])
     }
