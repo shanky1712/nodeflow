@@ -257,16 +257,17 @@ const InteractionFlow = () => {
           <FontAwesomeIcon icon="fa-solid fa-arrows-h" /> Custom
         </Button>
         &nbsp;
-        <Button onClick={addTargetNode} variant="secondary">
+        <Button onClick={addTargetNode} variant="danger">
           <FontAwesomeIcon icon="fa-solid fa-arrow-left" /> End
         </Button>
         {/* <BlockDrawer currentNodeId={currentNodeId} isOpen={isOpen} toggleDrawer={toggleDrawer} onAddHandle={onAddHandle} /> */}
       </Panel>
       <Panel position='top-right'>
-        <Button onClick={onRestore} variant="secondary">
+        <Button onClick={onRestore} variant="primary">
           <FontAwesomeIcon icon="fa-solid fa-save" /> restore
         </Button>
-        <Button onClick={onSave} variant="secondary">
+        &nbsp;
+        <Button onClick={onSave} variant="success">
           <FontAwesomeIcon icon="fa-solid fa-save" /> Save
         </Button>
       </Panel>

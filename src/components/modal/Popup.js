@@ -4,10 +4,10 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import CustomForm from '../../CustomForm';
-const Popup = ({ getData, isOpen, onClose, sourceHandles, setSourceHandles, children, ...props }) => {
+const Popup = ({ getData, isOpen, onClose, children, ...props }) => {
   const [isModalOpen, setModalOpen] = useState(isOpen)
   const modalRef = useRef(null)
-
+  let handleObj = getData.handles || [];
   const handleCloseModal = () => {
     if (onClose) {
       onClose()
@@ -32,7 +32,7 @@ const Popup = ({ getData, isOpen, onClose, sourceHandles, setSourceHandles, chil
       });
     }
   }, [isLoading]);
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState(getData.formData || {});
   const [defaultTab, setDefaultTab] = useState("text");
   const curNodeId = useNodeId();
   const store = useStoreApi();
@@ -42,6 +42,13 @@ const Popup = ({ getData, isOpen, onClose, sourceHandles, setSourceHandles, chil
     event.preventDefault();
     console.log("nodeInternals")
     console.log(nodeInternals)
+    if (defaultTab === 'interactive') {
+      // setSourceHandles([...sourceHandles, {}])
+      handleObj = [];
+    }
+    else {
+      handleObj = [{"id": curNodeId+"-handle", "type":"source", "label": "Next"}];
+    }    
     setNodes(
       Array.from(nodeInternals.values()).map((node) => {
         if (node.id === curNodeId) {
@@ -49,6 +56,7 @@ const Popup = ({ getData, isOpen, onClose, sourceHandles, setSourceHandles, chil
             ...node.data,
             formType: defaultTab, 
             formData: formData,
+            handles: handleObj,
           };
         }
 
@@ -69,12 +77,12 @@ const Popup = ({ getData, isOpen, onClose, sourceHandles, setSourceHandles, chil
     //   return node;
     // });
     // setNodes(newState);
-    if (defaultTab === 'interactive') {
-      setSourceHandles([...sourceHandles, {}])
-    }
-    else {
-      setSourceHandles([{}])
-    }
+    // if (defaultTab === 'interactive') {
+    //   setSourceHandles([...sourceHandles, {}])
+    // }
+    // else {
+    //   setSourceHandles([{}])
+    // }
     setLoading(true);
   }
   

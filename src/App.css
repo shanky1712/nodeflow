@@ -211,7 +211,10 @@ button.circle{
   margin-right: 10px;
 }
 
-
+.handleLbl {
+  text-align: right;
+  height: 16px;
+}
 
 .react-flow__node-customNode{
   margin: 0;

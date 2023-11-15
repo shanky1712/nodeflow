@@ -7,11 +7,12 @@ function CustomNode({ id, data, isConnectable, onDeleteNode }) {
 
   const updateNodeInternals = useUpdateNodeInternals();
   const [sourceHandles, setSourceHandles] = useState([]);
+  const handles = data.handles || [];
   useEffect(() => {
-    sourceHandles.map((sourceHandle, index) => {
+    handles.map((sourceHandle, index) => {
       updateNodeInternals(`handle-${index}`)
     })
-  }, [sourceHandles]);
+  }, [handles]);
 
   const [isNewsletterModalOpen, setNewsletterModalOpen] = useState(false)
   const handleOpenNewsletterModal = () => {
@@ -51,9 +52,9 @@ function CustomNode({ id, data, isConnectable, onDeleteNode }) {
           <div className="bubble-arrow alt"></div>
         </div>
       </div>       */}
-      <Popup getData={data} isOpen={isNewsletterModalOpen} onClose={handleCloseNewsletterModal} sourceHandles={sourceHandles} setSourceHandles={setSourceHandles} />
+      <Popup getData={data} isOpen={isNewsletterModalOpen} onClose={handleCloseNewsletterModal} />
       <Handle type="target" position={Position.Left} />
-      {sourceHandles.map((sourceHandle, index) => (
+      {/* {sourceHandles.map((sourceHandle, index) => (
         <div key={(index + 100)}>
           <div style={{ height: 16 }}>Handle {index}</div>
           <Handle
@@ -62,6 +63,20 @@ function CustomNode({ id, data, isConnectable, onDeleteNode }) {
             position={Position.Right}
             isConnectable={isConnectable}
             id={`handle-${index}`}
+            style={{ top: 40 + 15 * index }}
+          />
+        </div>
+      ))} */}
+
+      {handles.map((handleData, index) => (
+        <div key={(index + 100)}>
+          <div className='handleLbl'>{handleData.label}</div>
+          <Handle
+            position={Position.Right}
+            key={handleData.id}
+            isConnectable={isConnectable}
+            id={`handle-${index}`}
+            type={handleData.type}
             style={{ top: 40 + 15 * index }}
           />
         </div>
