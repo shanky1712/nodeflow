@@ -4,21 +4,6 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 const ContactWidget = ({formData, setFormData}) => {
-  // let formStateData = {
-  //   firstName: '',
-  //   middleName: '',
-  //   lastName: '',
-  //   formattedName: '',
-  //   phoneNo: '',
-  //   addr1: '',
-  //   addr2: '',
-  //   city: '',
-  //   state: '',
-  //   zip: '',
-  //   lat: '',
-  //   lng: '',
-  // };
-  // const [formData, setFormData] = useState(formStateData);
 
   const handleChange = (event) => {
     const { name, value } = event.target;

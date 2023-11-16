@@ -33,7 +33,7 @@ const Popup = ({ getData, isOpen, onClose, children, ...props }) => {
     }
   }, [isLoading]);
   const [formData, setFormData] = useState(getData.formData || {});
-  const [defaultTab, setDefaultTab] = useState("text");
+  const [defaultTab, setDefaultTab] = useState(getData.formType || "text");
   const curNodeId = useNodeId();
   const store = useStoreApi();
   const { setNodes } = useReactFlow();
@@ -42,6 +42,7 @@ const Popup = ({ getData, isOpen, onClose, children, ...props }) => {
     event.preventDefault();
     console.log("nodeInternals")
     console.log(nodeInternals)
+    console.log(formData)
     if (defaultTab === 'interactive') {
       // setSourceHandles([...sourceHandles, {}])
       handleObj = [];
@@ -62,30 +63,27 @@ const Popup = ({ getData, isOpen, onClose, children, ...props }) => {
 
         return node;
       })
-    );    
-    // const newState = nodes.map(node => {
-    //   if (node.id === curNodeId) {
-
-    //     const obj = node.data;
-    //     const newObj = { ...obj, formType: defaultTab, formData: formData };
-
-    //     console.log(node.data)
-    //     console.log(defaultTab)
-    //     console.log(formData)        
-    //     return {...node, data: newObj};
-    //   }
-    //   return node;
-    // });
-    // setNodes(newState);
-    // if (defaultTab === 'interactive') {
-    //   setSourceHandles([...sourceHandles, {}])
-    // }
-    // else {
-    //   setSourceHandles([{}])
-    // }
+    );
     setLoading(true);
   }
   
+  // function handleSubmit(event) {
+  //   event.preventDefault()
+  //   const url = 'http://localhost:3000/uploadFile';
+  //   const formData = new FormData();
+  //   formData.append('file', file);
+  //   formData.append('fileName', file.name);
+  //   const config = {
+  //     headers: {
+  //       'content-type': 'multipart/form-data',
+  //     },
+  //   };
+  //   axios.post(url, formData, config).then((response) => {
+  //     console.log(response.data);
+  //   });
+
+  // }
+
   return (
     <>
       <Modal show={isOpen} onHide={handleCloseModal} size="lg">

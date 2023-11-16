@@ -1,22 +1,36 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Form from 'react-bootstrap/Form';
 const AudioWidget = ({formData, setFormData}) => {
-  // let formStateData = {
-  //   file: '',
-  //   audioUrl: '',
-  // };
-  // const [formData, setFormData] = useState(formStateData);
-
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
+  const inputRef = useRef();
+  const [source, setSource] = useState();
 
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    const url = URL.createObjectURL(file);
+    setSource(url);
+    const { name, value } = event.target;
+    setFormData((prevFormData) => ({ 
+      ...prevFormData, 
+      [name]: value,
+      ['audio']: url, 
+      ['audioData']: file,
+    }));  
+  };
   return (
     <>
       <Form.Group controlId="formFile" className="mb-3">
         <Form.Label>Audio</Form.Label>
-        <Form.Control type="file" />
+        <Form.Control 
+          type="file" 
+          name="audio"
+          ref={inputRef}
+          onChange={handleFileChange}
+          accept=".mp3"
+        />
       </Form.Group>
       <div>Or</div>
       <Form.Group className="mb-3" controlId="flow-audio-url">

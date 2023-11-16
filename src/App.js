@@ -57,10 +57,10 @@ const InteractionFlow = () => {
     setEdges((edges) => edges.filter((edge) => edge.source !== id));
     setEdges((edges) => edges.filter((edge) => edge.target !== id));
   };
-  console.log('******')
-  console.log(nodes)
-  console.log(edges)
-  console.log('******')
+  // console.log('******')
+  // console.log(nodes)
+  // console.log(edges)
+  // console.log('******')
   // const [nodes, setNodes] = useState(initialNodes);
   // const [edges, setEdges] = useState(initialEdges);
   const [menu, setMenu] = useState(null);
@@ -167,7 +167,7 @@ const InteractionFlow = () => {
     xPos.current += 50;
     yPos.current += 50;
     setNodes((nodes) => {
-      console.log(nodes);
+      // console.log(nodes);
       const nC = nodes.length;
       return [
         ...nodes,

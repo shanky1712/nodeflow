@@ -72,30 +72,30 @@ const InteractiveWidget = ({formData, setFormData}) => {
         {optionList.map((singleOption, index) => (
           // <Form.Group key={index} className="mb-3 add-more" controlId={"controlInput" + index}>
             <div key={index} className="mb-3 add-more options">
-            <div className="first-division">
-              <input
-                className="form-control"
-                name={"options" + index}
-                type="text"
-                id={"options" + index}
-                value={singleOption.option}
-                onChange={(e) => handleOptionLblChange(e, index)}
-                // required
-              />
+              <div className="first-division">
+                <input
+                  className="form-control"
+                  name="option"
+                  type="text"
+                  id={"options" + index}
+                  value={singleOption.option}
+                  onChange={(e) => handleOptionLblChange(e, index)}
+                  // required
+                />
 
-            </div>
-            <div className="second-division">
-              {optionList.length !== 1 && (
-                <Button className="mb-3" variant="danger" onClick={() => {handleServiceRemove(index)}}>
-                  <FontAwesomeIcon icon="fa-solid fa-trash" />
-                </Button>
-              )}
-              {optionList.length - 1 === index && optionList.length < 4 && (
-                <Button className="mb-3" variant="primary" onClick={handleServiceAdd}>
-                  <FontAwesomeIcon icon="fa-solid fa-plus-square" /> Add Options
-                </Button>
-              )}
-            </div>
+              </div>
+              <div className="second-division">
+                {optionList.length !== 1 && (
+                  <Button className="mb-3" variant="danger" onClick={() => {handleServiceRemove(index)}}>
+                    <FontAwesomeIcon icon="fa-solid fa-trash" />
+                  </Button>
+                )}
+                {optionList.length - 1 === index && optionList.length < 4 && (
+                  <Button className="mb-3" variant="primary" onClick={handleServiceAdd}>
+                    <FontAwesomeIcon icon="fa-solid fa-plus-square" /> Add Options
+                  </Button>
+                )}
+              </div>
             </div>
         ))}
       </div>      
