@@ -19,8 +19,8 @@ const InteractiveWidget = ({formData, setFormData}) => {
     const { name, value } = e.target;
     const list = [...optionList];
     list[index][name] = value;
-    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
     setOptionList(list);
+    setFormData((prevFormData) => ({ ...prevFormData, ["options"]: list }));
     console.log(optionList)
   };
 
@@ -47,7 +47,7 @@ const InteractiveWidget = ({formData, setFormData}) => {
     <>
       <Form.Group className="mb-3" controlId="flow-body-interactive">
         <Form.Label>Body</Form.Label>
-        <Form.Control as="textarea" rows={3} name='interactiveBody' onChange={handleBodyChange}/>
+        <Form.Control as="textarea" rows={3} name='interactiveBody' onChange={handleBodyChange} value={formData.interactiveBody} />
       </Form.Group>
       <ButtonGroup className="mb-3">
         {radios.map((radio, idx) => (
@@ -59,7 +59,7 @@ const InteractiveWidget = ({formData, setFormData}) => {
             variant="outline-success"
             name="optionType"
             value={radio.value}
-            checked={radioValue === radio.value}
+            checked={formData.optionType === radio.value}
             onChange={optionTypeChange}
           >
             {radio.name}
@@ -90,7 +90,7 @@ const InteractiveWidget = ({formData, setFormData}) => {
                     <FontAwesomeIcon icon="fa-solid fa-trash" />
                   </Button>
                 )}
-                {optionList.length - 1 === index && optionList.length < 4 && (
+                {optionList.length - 1 === index && optionList.length < 8 && (
                   <Button className="mb-3" variant="primary" onClick={handleServiceAdd}>
                     <FontAwesomeIcon icon="fa-solid fa-plus-square" /> Add Options
                   </Button>
