@@ -15,7 +15,7 @@ import TemplateWidget from '././components/FormGrp/TemplateWidget'
 const CustomForm = ({formData, setFormData, defaultTab, setDefaultTab}) => {
   const handleTabSelect = key => {
     setDefaultTab(key)
-    // setFormData({})
+    setFormData({})
    }
   // console.log(defaultTab)
   return (
