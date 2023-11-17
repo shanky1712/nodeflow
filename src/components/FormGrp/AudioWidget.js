@@ -26,7 +26,7 @@ const AudioWidget = ({formData, setFormData}) => {
         <Form.Label>Audio</Form.Label>
         <Form.Control 
           type="file" 
-          name="audio"
+          name="audio_audio"
           ref={inputRef}
           onChange={handleFileChange}
           accept=".mp3"
@@ -37,10 +37,9 @@ const AudioWidget = ({formData, setFormData}) => {
         <Form.Control
           type="text"
           placeholder="Paste Audio URL"
-
-          name="audioUrl"
+          name="audio_audioUrl"
           onChange={handleChange}
-          value={formData.audioUrl || ""}
+          value={formData.audio_audioUrl || ""}
         />
       </Form.Group>
     </>

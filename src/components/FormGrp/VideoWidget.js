@@ -28,7 +28,7 @@ const VideoWidget = ({formData, setFormData}) => {
         <Form.Label>Video</Form.Label>
         <Form.Control 
           type="file" 
-          name="video"
+          name="video_video"
           ref={inputRef}
           onChange={handleFileChange}
           accept=".mov,.mp4"
@@ -49,9 +49,9 @@ const VideoWidget = ({formData, setFormData}) => {
         <Form.Control
           type="text"
           placeholder="Paste Video URL"
-          name="videoUrl"
+          name="video_videoUrl"
           onChange={handleChange}
-          value={formData.videoUrl || ""}
+          value={formData.ideo_videoUrl || ""}
         />
       </Form.Group>
       <Form.Group className="mb-3" controlId="flow-video-caption">
@@ -59,10 +59,9 @@ const VideoWidget = ({formData, setFormData}) => {
         <Form.Control
           type="text"
           placeholder="Caption Text"
-
-          name="captionTxt"
+          name="video_captionTxt"
           onChange={handleChange}
-          value={formData.captionTxt || ""}
+          value={formData.ideo_captionTxt || ""}
         />
       </Form.Group>
     </>

@@ -27,7 +27,7 @@ const DocWidget = ({formData, setFormData}) => {
         <Form.Label>Document</Form.Label>
         <Form.Control 
           type="file" 
-          name="doc"
+          name="doc_doc"
           ref={inputRef}
           onChange={handleFileChange}
           accept=".doc,.pdf,.docx"
@@ -38,9 +38,9 @@ const DocWidget = ({formData, setFormData}) => {
         <Form.Control
           type="text"
           placeholder="Paste Document URL"
-          name="docUrl"
+          name="doc_docUrl"
           onChange={handleChange}
-          value={formData.docUrl || ""}
+          value={formData.doc_docUrl || ""}
         />
       </Form.Group>
       <Form.Group className="mb-3" controlId="flow-doc-file-name">
@@ -48,9 +48,9 @@ const DocWidget = ({formData, setFormData}) => {
         <Form.Control
           type="text"
           placeholder="File name"
-          name="fileName"
+          name="doc_fileName"
           onChange={handleChange}
-          value={formData.fileName || ""}
+          value={formData.doc_fileName || ""}
         />
       </Form.Group>
     </>

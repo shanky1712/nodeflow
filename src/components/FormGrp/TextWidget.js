@@ -13,11 +13,10 @@ const TextWidget = ({formData, setFormData}) => {
       <Form.Label>Text Message Body</Form.Label>
       <Form.Control
         type="text"
-        name="bodyTxt"
-
+        name="text_bodyTxt"
         placeholder="Text Message Body"
         onChange={handleChange}
-        value={formData.bodyTxt || ""}
+        value={formData.text_bodyTxt || ""}
         autoFocus
       />
     </Form.Group>

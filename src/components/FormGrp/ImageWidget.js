@@ -27,7 +27,7 @@ const ImageWidget = ({formData, setFormData}) => {
         <Form.Label>Image</Form.Label>
         <Form.Control 
           type="file"
-          name="image"
+          name="image_image"
           accept="image/*"
           onChange={handleOnChange}
         />
@@ -38,9 +38,9 @@ const ImageWidget = ({formData, setFormData}) => {
         <Form.Control
           type="text"
           placeholder="Paste Image URL"
-          name="imageUrl"
+          name="image_imageUrl"
           onChange={handleChange}
-          value={formData.imageUrl || ""}
+          value={formData.image_imageUrl || ""}
         />
       </Form.Group>
       <Form.Group className="mb-3" controlId="flow-img-caption">
@@ -48,9 +48,9 @@ const ImageWidget = ({formData, setFormData}) => {
         <Form.Control
           type="text"
           placeholder="Caption Text"
-          name="captionTxt"
+          name="image_captionTxt"
           onChange={handleChange}
-          value={formData.captionTxt || ""}
+          value={formData.image_captionTxt || ""}
         />
       </Form.Group>
     </>

@@ -12,16 +12,17 @@ const InteractiveWidget = ({formData, setFormData}) => {
     { name: 'Button', value: '1' },
     { name: 'List', value: '2' },
   ];
-
-  const [optionList, setOptionList] = useState([{ option: "" }]);
+  // console.log("formData interactive_options")
+  // console.log(formData.interactive_options)
+  const [optionList, setOptionList] = useState( formData.interactive_options || [{ option: "" }]);
 
   const handleOptionLblChange = (e, index) => {
     const { name, value } = e.target;
     const list = [...optionList];
     list[index][name] = value;
     setOptionList(list);
-    setFormData((prevFormData) => ({ ...prevFormData, ["options"]: list }));
-    console.log(optionList)
+    setFormData((prevFormData) => ({ ...prevFormData, ["interactive_options"]: list }));
+    // console.log(optionList)
   };
 
   const handleServiceRemove = (index) => {
@@ -47,7 +48,7 @@ const InteractiveWidget = ({formData, setFormData}) => {
     <>
       <Form.Group className="mb-3" controlId="flow-body-interactive">
         <Form.Label>Body</Form.Label>
-        <Form.Control as="textarea" rows={3} name='interactiveBody' onChange={handleBodyChange} value={formData.interactiveBody} />
+        <Form.Control as="textarea" rows={3} name='interactive_interactiveBody' onChange={handleBodyChange} value={formData.interactive_interactiveBody} />
       </Form.Group>
       <ButtonGroup className="mb-3">
         {radios.map((radio, idx) => (
@@ -57,9 +58,9 @@ const InteractiveWidget = ({formData, setFormData}) => {
             type="radio"
             // variant={idx % 2 ? 'outline-success' : 'outline-danger'}
             variant="outline-success"
-            name="optionType"
+            name="interactive_optionType"
             value={radio.value}
-            checked={formData.optionType === radio.value}
+            checked={formData.interactive_optionType === radio.value}
             onChange={optionTypeChange}
           >
             {radio.name}
@@ -75,10 +76,10 @@ const InteractiveWidget = ({formData, setFormData}) => {
               <div className="first-division">
                 <input
                   className="form-control"
-                  name="option"
+                  name="interactive_option"
                   type="text"
-                  id={"options" + index}
-                  value={singleOption.option}
+                  id={"option-" + index}
+                  value={singleOption.interactive_option || ''}
                   onChange={(e) => handleOptionLblChange(e, index)}
                   // required
                 />

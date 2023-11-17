@@ -13,11 +13,24 @@ import ContactWidget from '././components/FormGrp/ContactWidget'
 import InteractiveWidget from '././components/FormGrp/InteractiveWidget'
 import TemplateWidget from '././components/FormGrp/TemplateWidget'
 const CustomForm = ({formData, setFormData, defaultTab, setDefaultTab}) => {
+  const widgets = ["text_", "image_", "video_", "audio_", "doc_", "loc_", "contact_", "interactive_", "template_"];
   const handleTabSelect = key => {
     setDefaultTab(key)
-    setFormData({})
+    const filteredWidgets = widgets.filter(element => element !== key+'_');
+    // setFormData({})
+    // console.log("widgetkey")
+    console.log(formData)
+    // console.log(filteredWidgets)
+    Object.keys(formData).forEach((k, i) => {
+      filteredWidgets.map((widgetkey, index) => {
+        if (k.indexOf(widgetkey) !== -1) {
+          delete formData[k];
+        }
+      })
+      console.log(k);
+      // console.log(formData);
+    });
    }
-  // console.log(defaultTab)
   return (
     <div>
       <Tabs defaultActiveKey={defaultTab} id="flow-form" className="mb-3" onSelect={handleTabSelect} >
@@ -35,7 +48,7 @@ const CustomForm = ({formData, setFormData, defaultTab, setDefaultTab}) => {
         </Tab>
 
         {/* Document */}
-        <Tab eventKey="document" title="Docs" >
+        <Tab eventKey="doc" title="Docs" >
           <DocWidget formData={formData} setFormData={setFormData} />
         </Tab>
 
@@ -45,7 +58,7 @@ const CustomForm = ({formData, setFormData, defaultTab, setDefaultTab}) => {
         </Tab>
 
         {/* Location */}
-        <Tab eventKey="location" title="Place" >
+        <Tab eventKey="loc" title="Place" >
           <LocationWidget formData={formData} setFormData={setFormData} />
         </Tab>
 
@@ -60,7 +73,7 @@ const CustomForm = ({formData, setFormData, defaultTab, setDefaultTab}) => {
         </Tab>
 
         {/* Templates */}
-        <Tab eventKey="templates" title="Templates">
+        <Tab eventKey="template" title="Templates">
           <TemplateWidget formData={formData} setFormData={setFormData} />
         </Tab>
       </Tabs>

@@ -33,6 +33,27 @@ const Popup = ({ getData, isOpen, onClose, children, ...props }) => {
     }
   }, [isLoading]);
   const [formData, setFormData] = useState(getData.formData || {});
+  // const [formData, setFormData] = useState(getData.formData || {
+  //   formType: "",
+  //   formData: {
+  //     text: {},
+  //     image: {},
+  //     video: {},
+  //     doc: {},
+  //     audio: {},
+  //     loc: {},
+  //     contact: {},
+  //     interactive: {
+  //       optionType: 1,
+  //       interactiveBody: "",
+  //       options: {
+  //         option:{0:""},
+  //       }
+  //     },
+  //     template: {},
+  //   },
+  //   handles: "",
+  // });
   const [defaultTab, setDefaultTab] = useState(getData.formType || "text");
   const curNodeId = useNodeId();
   const store = useStoreApi();

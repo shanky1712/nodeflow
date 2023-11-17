@@ -10,26 +10,44 @@ const ContactWidget = ({formData, setFormData}) => {
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
 
-
+  // const updatePerson = event => {
+  //   const { name, value } = event
+  //   if (name === "name" || name === "age") {
+  //     setPerson(prevPerson => {
+  //       return { ...prevPerson, [name]: value }
+  //     })
+  //   }
+  //   if (name === "street" || name === "city") {
+  //     setPerson(prevPerson => {
+  //       const newPerson = { ...prevPerson }
+  //       newPerson.address[name] = value
+  //       return newPerson
+  //     })
+  //   }
+  //   if (name === "state" || name === "zip") {
+  //     setPerson(prevPerson => {
+  //       const newPerson = { ...prevPerson }
+  //       newPerson.address.stateZip[name] = value
+  //       return newPerson
+  //     })
+  //   }
+  // }
   return (
     <>
       <InputGroup className="mb-3">
         <InputGroup.Text>First, Middle and Last name</InputGroup.Text>
         <Form.Control aria-label="First name"
-
-          name="firstName"
+          name="contact_firstName"
           onChange={handleChange}
           value={formData.firstName || ""}
         />
         <Form.Control aria-label="Middle name"
-
-          name="middleName"
+          name="contact_middleName"
           onChange={handleChange}
           value={formData.middleName || ""}
         />
         <Form.Control aria-label="Last name"
-
-          name="lastName"
+          name="contact_lastName"
           onChange={handleChange}
           value={formData.lastName || ""}
         />
@@ -39,8 +57,7 @@ const ContactWidget = ({formData, setFormData}) => {
         <Form.Control
           type="text"
           placeholder="Formatted Name"
-
-          name="formattedName"
+          name="contact_formattedName"
           onChange={handleChange}
           value={formData.formattedName || ""}
         />
@@ -50,8 +67,7 @@ const ContactWidget = ({formData, setFormData}) => {
         <Form.Control
           type="text"
           placeholder="Phone Number"
-
-          name="phoneNo"
+          name="contact_phoneNo"
           onChange={handleChange}
           value={formData.phoneNo || ""}
         />
@@ -59,8 +75,7 @@ const ContactWidget = ({formData, setFormData}) => {
       <Form.Group className="mb-3" controlId="flow-contact-formGridAddress1">
         <Form.Label>Address</Form.Label>
         <Form.Control placeholder="1234 Main St"
-
-          name="addr1"
+          name="contact_addr1"
           onChange={handleChange}
           value={formData.addr1 || ""}
         />
@@ -69,8 +84,7 @@ const ContactWidget = ({formData, setFormData}) => {
       <Form.Group className="mb-3" controlId="flow-contact-formGridAddress2">
         <Form.Label>Address 2</Form.Label>
         <Form.Control placeholder="Apartment, studio, or floor"
-
-          name="addr2"
+          name="contact_addr2"
           onChange={handleChange}
           value={formData.addr2 || ""}
         />
@@ -80,8 +94,7 @@ const ContactWidget = ({formData, setFormData}) => {
         <Form.Group as={Col} controlId="flow-contact-formGridCity">
           <Form.Label>City</Form.Label>
           <Form.Control
-
-            name="city"
+            name="contact_city"
             onChange={handleChange}
             value={formData.city || ""}
           />
@@ -98,10 +111,9 @@ const ContactWidget = ({formData, setFormData}) => {
         <Form.Group as={Col} controlId="flow-contact-formGridZip">
           <Form.Label>Zip</Form.Label>
           <Form.Control
-
-            name="zip"
+            name="contact_zip"
             onChange={handleChange}
-            value={formData.zip || ""}
+            value={formData.contact_zip || ""}
           />
         </Form.Group>
       </Row>

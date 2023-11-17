@@ -15,9 +15,9 @@ const LocationWidget = ({formData, setFormData}) => {
         <Form.Control
           type="text"
           placeholder="Name"
-          name="name"
+          name="loc_name"
           onChange={handleChange}
-          value={formData.name || ""}
+          value={formData.loc_name || ""}
           autoFocus
         />
       </Form.Group>
@@ -25,9 +25,9 @@ const LocationWidget = ({formData, setFormData}) => {
         <Form.Label>Address</Form.Label>
         <Form.Control
           placeholder="1234 Main St"
-          name="addr1"
+          name="loc_addr1"
           onChange={handleChange}
-          value={formData.addr1 || ""}
+          value={formData.loc_addr1 || ""}
         />
       </Form.Group>
 
@@ -35,9 +35,9 @@ const LocationWidget = ({formData, setFormData}) => {
         <Form.Label>Address 2</Form.Label>
         <Form.Control
           placeholder="Apartment, studio, or floor"
-          name="addr2"
+          name="loc_addr2"
           onChange={handleChange}
-          value={formData.addr2 || ""}
+          value={formData.loc_addr2 || ""}
         />
       </Form.Group>
 
@@ -45,9 +45,9 @@ const LocationWidget = ({formData, setFormData}) => {
         <Form.Group as={Col} controlId="formGridCity">
           <Form.Label>City</Form.Label>
           <Form.Control
-            name="city"
+            name="loc_city"
             onChange={handleChange}
-            value={formData.city || ""}
+            value={formData.loc_city || ""}
           />
         </Form.Group>
 
@@ -62,9 +62,9 @@ const LocationWidget = ({formData, setFormData}) => {
         <Form.Group as={Col} controlId="formGridZip">
           <Form.Label>Zip</Form.Label>
           <Form.Control
-            name="zip"
+            name="loc_zip"
             onChange={handleChange}
-            value={formData.zip || ""}
+            value={formData.loc_zip || ""}
           />
         </Form.Group>
       </Row>
@@ -73,9 +73,9 @@ const LocationWidget = ({formData, setFormData}) => {
         <Form.Control
           type="text"
           placeholder="Latitude"
-          name="lat"
+          name="loc_lat"
           onChange={handleChange}
-          value={formData.lat || ""}
+          value={formData.loc_lat || ""}
         />
       </Form.Group>
       <Form.Group className="mb-3" controlId="flow-loc-lng">
@@ -83,9 +83,9 @@ const LocationWidget = ({formData, setFormData}) => {
         <Form.Control
           type="text"
           placeholder="Longitude"
-          name="lng"
+          name="loc_lng"
           onChange={handleChange}
-          value={formData.lng || ""}
+          value={formData.loc_lng || ""}
         />
       </Form.Group>
     </>
