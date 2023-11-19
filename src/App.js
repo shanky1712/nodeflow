@@ -28,10 +28,10 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import Button from 'react-bootstrap/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
+import TriggerPopup from './components/modal/TriggerPopup';
 
 const flowKey = 'example-flow';
-const proOptions = { hideAttribution: true }
+const proOptions = { hideAttribution: false }
 const edgeTypes = { buttonedge: ButtonEdge, };
 
 const InteractionFlow = () => {
@@ -152,11 +152,18 @@ const InteractionFlow = () => {
   const [currentNodeId, setCurrentNodeId] = useState('');
   const [isOpen, setIsOpen] = useState(false)
 
+  const [inputNodeData, setInputNodeData] = useState('');
+
   const toggleDrawer = () => {
     setIsOpen((prevState) => !prevState)
   }
   const onNodeClick = (event, node) => {
     // setCurrentNode(node);
+    if (node.type == "input") {
+      setInputNodeData(node)
+      handleOpenNewsletterModal()
+    }
+    // console.log(node)
     // toggleDrawer();
   }
   // New changes end------------------------
@@ -205,7 +212,7 @@ const InteractionFlow = () => {
   const onRestore = useCallback(() => {
     const restoreFlow = async () => {
       const flow = JSON.parse(localStorage.getItem(flowKey));
-
+      console.log(flow)
       if (flow) {
         const { x = 0, y = 0, zoom = 1 } = flow.viewport;
         setNodes(flow.nodes || []);
@@ -216,7 +223,15 @@ const InteractionFlow = () => {
 
     restoreFlow();
   }, [setNodes, setViewport]);
-  
+  const [isNewsletterModalOpen, setNewsletterModalOpen] = useState(false)
+  const handleOpenNewsletterModal = () => {
+    setNewsletterModalOpen(true)
+  }
+
+  const handleCloseNewsletterModal = () => {
+    setNewsletterModalOpen(false)
+  }
+
   return (
 
     <ReactFlow
@@ -250,6 +265,7 @@ const InteractionFlow = () => {
     >
       {/* <MiniMap /> */}
       <Controls />
+      <TriggerPopup inputNodeData={inputNodeData} isOpen={isNewsletterModalOpen} onClose={handleCloseNewsletterModal} />
       <Background />
       {menu && <ContextMenu onClick={onPaneClick} {...menu} />}
       <Panel position="top-left">

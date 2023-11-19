@@ -66,7 +66,18 @@ const Popup = ({ getData, isOpen, onClose, children, ...props }) => {
     console.log(formData)
     if (defaultTab === 'interactive') {
       // setSourceHandles([...sourceHandles, {}])
-      handleObj = [];
+      var handleObj = [];
+      
+      formData.interactive_options.map((options, index) => {
+        var obj = {};
+        obj["id"] = curNodeId+"-handle-"+index;
+        obj["type"] = "source";
+        obj["label"] = options.interactive_option;
+        handleObj.push(obj);
+        console.log(index)
+        console.log(options.interactive_option)
+        
+      })
     }
     else {
       handleObj = [{"id": curNodeId+"-handle", "type":"source", "label": "Next"}];

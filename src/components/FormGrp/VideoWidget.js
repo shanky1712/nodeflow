@@ -51,7 +51,7 @@ const VideoWidget = ({formData, setFormData}) => {
           placeholder="Paste Video URL"
           name="video_videoUrl"
           onChange={handleChange}
-          value={formData.ideo_videoUrl || ""}
+          value={formData.video_videoUrl || ""}
         />
       </Form.Group>
       <Form.Group className="mb-3" controlId="flow-video-caption">
@@ -61,7 +61,7 @@ const VideoWidget = ({formData, setFormData}) => {
           placeholder="Caption Text"
           name="video_captionTxt"
           onChange={handleChange}
-          value={formData.ideo_captionTxt || ""}
+          value={formData.video_captionTxt || ""}
         />
       </Form.Group>
     </>

@@ -26,9 +26,11 @@ const InteractiveWidget = ({formData, setFormData}) => {
   };
 
   const handleServiceRemove = (index) => {
+    console.log(index)
     const list = [...optionList];
     list.splice(index, 1);
     setOptionList(list);
+    setFormData((prevFormData) => ({ ...prevFormData, ["interactive_options"]: list }));
   };
 
   const handleServiceAdd = () => {

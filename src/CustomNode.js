@@ -1,7 +1,8 @@
 import { useCallback, useState, useEffect, memo } from 'react';
 import { Handle, Position, useUpdateNodeInternals, NodeToolbar } from 'reactflow';
 import Popup from './components/modal/Popup';
-import CustomForm from './CustomForm';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 function CustomNode({ id, data, isConnectable, onDeleteNode }) {
 
@@ -22,7 +23,71 @@ function CustomNode({ id, data, isConnectable, onDeleteNode }) {
   const handleCloseNewsletterModal = () => {
     setNewsletterModalOpen(false)
   }
-
+  let body = ''
+  const nodeLbl = () => {
+    switch (data.formType) {
+      case "text":
+        
+        body = data.formData.text_bodyTxt ? data.formData.text_bodyTxt : "Text Node"
+        var trimmedString = body.substring(0, 50);
+        return trimmedString+".."
+      case "image":
+        
+        body = data.formData.image_captionTxt ? data.formData.image_captionTxt : "Image Node"
+        var trimmedString = body.substring(0, 50);
+        return trimmedString+".."
+      case "audio":
+        
+        var trimmedString = "Audio Nodde";
+        return trimmedString+".."
+      case "video":
+        
+        body = data.formData.video_captionTxt ? data.formData.video_captionTxt : "Video Node"
+        var trimmedString = body.substring(0, 50);
+        return trimmedString+".."
+      case "doc":
+        
+        body = data.formData.doc_fileName ? data.formData.doc_fileName : "Document Node"
+        var trimmedString = body.substring(0, 50);
+        return trimmedString+".."
+      case "loc":
+        
+        body = data.formData.loc_name ? data.formData.loc_name : "Location Node"
+        var trimmedString = body.substring(0, 50);
+        return trimmedString+".."
+      case "contact":
+        
+        body = data.formData.contact_firstName ? data.formData.contact_firstName : "Contact Node"
+        var trimmedString = body.substring(0, 50);
+        return trimmedString+".."
+      case "interactive":
+        
+        body = data.formData.interactive_interactiveBody ? data.formData.interactive_interactiveBody : "Interactive Node"
+        var trimmedString = body.substring(0, 50);
+        return trimmedString+".."
+      case "template":
+        
+        body = "Template Node"
+        var trimmedString = body.substring(0, 50);
+        return trimmedString+".."
+      default:
+        return "Node"
+    }
+  }
+  const renderTooltip = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+      <div className="speech-wrapper">
+        <div className="bubble">
+          <div className="txt">
+            <p className="name"><FontAwesomeIcon icon="fa-solid fa-user" /> User</p>
+            <p className="message">{nodeLbl()}</p>
+            <span className="timestamp">10:20 pm</span>
+          </div>
+          <div className="bubble-arrow"></div>
+        </div>
+      </div>
+    </Tooltip>
+  );
   return (
     <>
       <NodeToolbar>
@@ -32,41 +97,19 @@ function CustomNode({ id, data, isConnectable, onDeleteNode }) {
         <button onClick={() => handleOpenNewsletterModal()} className='raw-btn dark'>
           <FontAwesomeIcon icon="fa-solid fa-gear" />
         </button>
+        <OverlayTrigger
+          placement="right"
+          delay={{ show: 250, hide: 400 }}
+          overlay={renderTooltip}
+        >
+          <button className='raw-btn dark'>
+            <FontAwesomeIcon icon="fa-solid fa-circle-info" />
+          </button>
+        </OverlayTrigger>
       </NodeToolbar>
-      Cus.{data.label}
-      {/* <div className="speech-wrapper">
-        <div className="bubble">
-          <div className="txt">
-            <p className="name"><FontAwesomeIcon icon="fa-solid fa-user" /> Benni</p>
-            <p className="message">Hey, check out this Pure CSS speech bubble...</p>
-            <span className="timestamp">10:20 pm</span>
-          </div>
-          <div className="bubble-arrow"></div>
-        </div>
-        <div className="bubble alt">
-          <div className="txt">
-            <p className="name alt">+353 87 1234 567<span> ~ John</span></p>
-            <p className="message">Nice... this will work great for my new project.</p>
-            <span className="timestamp">10:22 pm</span>
-          </div>
-          <div className="bubble-arrow alt"></div>
-        </div>
-      </div>       */}
+      <div className='nodeLbl'>{nodeLbl()}</div>
       <Popup getData={data} isOpen={isNewsletterModalOpen} onClose={handleCloseNewsletterModal} />
       <Handle type="target" position={Position.Left} />
-      {/* {sourceHandles.map((sourceHandle, index) => (
-        <div key={(index + 100)}>
-          <div style={{ height: 16 }}>Handle {index}</div>
-          <Handle
-            type="source"
-            onConnect={(params) => console.log('Handle Connect', params)}
-            position={Position.Right}
-            isConnectable={isConnectable}
-            id={`handle-${index}`}
-            style={{ top: 40 + 15 * index }}
-          />
-        </div>
-      ))} */}
 
       {handles.map((handleData, index) => (
         <div key={(index + 100)}>
@@ -77,7 +120,7 @@ function CustomNode({ id, data, isConnectable, onDeleteNode }) {
             isConnectable={isConnectable}
             id={`handle-${index}`}
             type={handleData.type}
-            style={{ top: 40 + 15 * index }}
+            style={{ top: 55 + 15 * index }}
           />
         </div>
       ))}

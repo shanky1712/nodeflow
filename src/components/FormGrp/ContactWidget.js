@@ -39,17 +39,17 @@ const ContactWidget = ({formData, setFormData}) => {
         <Form.Control aria-label="First name"
           name="contact_firstName"
           onChange={handleChange}
-          value={formData.firstName || ""}
+          value={formData.contact_firstName || ""}
         />
         <Form.Control aria-label="Middle name"
           name="contact_middleName"
           onChange={handleChange}
-          value={formData.middleName || ""}
+          value={formData.contact_middleName || ""}
         />
         <Form.Control aria-label="Last name"
           name="contact_lastName"
           onChange={handleChange}
-          value={formData.lastName || ""}
+          value={formData.contact_lastName || ""}
         />
       </InputGroup>
       <Form.Group className="mb-3" controlId="flow-formatted-name">
@@ -59,7 +59,7 @@ const ContactWidget = ({formData, setFormData}) => {
           placeholder="Formatted Name"
           name="contact_formattedName"
           onChange={handleChange}
-          value={formData.formattedName || ""}
+          value={formData.contact_formattedName || ""}
         />
       </Form.Group>
       <Form.Group className="mb-3" controlId="flow-contact-number">
@@ -69,7 +69,7 @@ const ContactWidget = ({formData, setFormData}) => {
           placeholder="Phone Number"
           name="contact_phoneNo"
           onChange={handleChange}
-          value={formData.phoneNo || ""}
+          value={formData.contact_phoneNo || ""}
         />
       </Form.Group>
       <Form.Group className="mb-3" controlId="flow-contact-formGridAddress1">
@@ -77,16 +77,16 @@ const ContactWidget = ({formData, setFormData}) => {
         <Form.Control placeholder="1234 Main St"
           name="contact_addr1"
           onChange={handleChange}
-          value={formData.addr1 || ""}
+          value={formData.contact_addr1 || ""}
         />
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="flow-contact-formGridAddress2">
         <Form.Label>Address 2</Form.Label>
         <Form.Control placeholder="Apartment, studio, or floor"
-          name="contact_addr2"
+          name="contact_addr1"
           onChange={handleChange}
-          value={formData.addr2 || ""}
+          value={formData.contact_addr1 || ""}
         />
       </Form.Group>
 
@@ -96,7 +96,7 @@ const ContactWidget = ({formData, setFormData}) => {
           <Form.Control
             name="contact_city"
             onChange={handleChange}
-            value={formData.city || ""}
+            value={formData.contact_city || ""}
           />
         </Form.Group>
 
