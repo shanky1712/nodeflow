@@ -18,7 +18,7 @@ export default function Flows() {
     }
     axiosClient.delete(`/flows/${user.id}`)
       .then(() => {
-        setNotification('Flow was successfully deleted')
+        setNotification(['Flow was successfully deleted',"success"])
         getFlows()
       })
   }

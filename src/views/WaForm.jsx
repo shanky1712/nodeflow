@@ -36,7 +36,7 @@ export default function WaForm() {
     if (user.id) {
       axiosClient.put(`/users/${user.id}`, user)
         .then(() => {
-          setNotification('User was successfully updated')
+          setNotification(['User was successfully updated',"success"])
           navigate('/users')
         })
         .catch(err => {
@@ -48,7 +48,7 @@ export default function WaForm() {
     } else {
       axiosClient.post('/users', user)
         .then(() => {
-          setNotification('User was successfully created')
+          setNotification(['User was successfully created',"success"])
           navigate('/users')
         })
         .catch(err => {

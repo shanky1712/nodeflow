@@ -137,7 +137,12 @@ table > tbody > tr > td {
     color: white;
     border-radius: 0.5rem;
 }
-
+.notification.success {
+    color:white !important;
+}
+.notification.error {
+    background-color: #a70000;
+}
 /* Login/Signup forms*/
 
 .login-signup-form {

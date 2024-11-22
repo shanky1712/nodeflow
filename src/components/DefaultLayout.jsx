@@ -2,7 +2,7 @@ import {Link, Navigate, Outlet, useSearchParams } from "react-router-dom";
 import {useStateContext} from "../context/ContextProvider";
 import axiosClient from "../axios-client.js";
 import {useEffect} from "react";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 export default function DefaultLayout() {
   const [searchParams] = useSearchParams();
   const {user, token, setUser, setToken, notification} = useStateContext();
@@ -46,8 +46,14 @@ export default function DefaultLayout() {
           <Outlet/>
         </main>
         {notification &&
-          <div className="notification">
-            {notification}
+          <div className={`notification ${notification[1]}`}>
+            {notification[1] == 'error' && (
+              <FontAwesomeIcon icon="fa-solid fa-exclamation-triangle" />
+            )}
+            {notification[1] == 'success' && (
+              <FontAwesomeIcon icon="fa-solid fa-circle-check" />
+            )}
+            {notification[0]}
           </div>
         }
       </div>

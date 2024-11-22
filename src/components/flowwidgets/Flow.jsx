@@ -27,6 +27,10 @@ import { fas } from '@fortawesome/free-solid-svg-icons'
 import Button from 'react-bootstrap/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import TriggerPopup from './modal/TriggerPopup';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 
 const flowKey = 'example-flow';
 const proOptions = { hideAttribution: false }
@@ -46,7 +50,7 @@ const InteractionFlow = () => {
         .then(({data}) => {
           // console.log(data);
           if (typeof data.message != "undefined") {
-            setNotification(data.message)
+            setNotification([data.message,"success"])
           }
           setLoading(false)
           if (data.data) {
@@ -115,26 +119,31 @@ const InteractionFlow = () => {
     if (rfInstance) {
       // console.log('On Save');
       const flow = rfInstance.toObject();
-      const token = localStorage.getItem('ACCESS_TOKEN');
-      const bodyParameters = {
-        "title": "Testing",
-        "data": flow
-      };
-      const config = {
-        headers: { Authorization: `Bearer ${token}` }
-      };
+      if ( flow.nodes[0].data.formData.flow_title ) {
+        const token = localStorage.getItem('ACCESS_TOKEN');
+        const bodyParameters = {
+          "title": "Testing",
+          "data": flow
+        };
+        const config = {
+          headers: { Authorization: `Bearer ${token}` }
+        };
 
-      axiosClient.post('/flows', bodyParameters, config)
-        .then((data) => {
-          setNotification(data.data.message)
-          navigate(`/flows/new/?token=${token}`)
-        })
-        .catch(err => {
-          const response = err.response;
-          if (response && response.status === 422) {
-            setErrors(response.data.errors)
-          }
-        })
+        axiosClient.post('/flows', bodyParameters, config)
+          .then((data) => {
+            setNotification([data.message,"success"])
+            navigate(`/flows/new/?token=${token}`)
+          })
+          .catch(err => {
+            const response = err.response;
+            if (response && response.status === 422) {
+              setErrors(response.data.errors)
+            }
+          })
+      }
+      else{
+        setNotification(["Input trigger node data needs to be updated!","error"])
+      }
       // localStorage.setItem(flowKey, JSON.stringify(flow));
       // const flow1 = JSON.parse(localStorage.getItem(flowKey));
       // console.log(flow1);
@@ -157,7 +166,7 @@ const InteractionFlow = () => {
         .then((data) => {
           // console.log(data.data.message);
           if (typeof data.data.message != "undefined") {
-            setNotification(data.data.message)
+            setNotification([data.data.message,"success"])
           }
           // setNotification('flows was successfully updated')
           navigate(`/flows/${id}?token=${token}`)
@@ -321,6 +330,34 @@ const InteractionFlow = () => {
       <Background />
       {menu && <ContextMenu onClick={onPaneClick} {...menu} />}
       <Panel position="top-left">
+        {/* <nav class="navbar navbar-light bg-light">
+          <div class="container">
+            <a class="navbar-brand" href="https://127.0.0.1:8000/automation/waflows">
+              <FontAwesomeIcon icon="fa-solid fa-arrow-left" />
+            </a>
+          </div>
+        </nav>
+        <Navbar expand="lg" className="bg-body-tertiary">
+          <Container>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="me-auto">
+                <NavDropdown title={(<FontAwesomeIcon icon="fa-solid fa-bars" />)} id="basic-nav-dropdown">
+                  <NavDropdown.Item href="#action/3.1">
+                    <Button onClick={addNode} variant="secondary">
+                      <FontAwesomeIcon icon="fa-solid fa-arrows-h" /> Custom
+                    </Button>
+                  </NavDropdown.Item>
+                  <NavDropdown.Item href="#action/3.2">
+                    <Button onClick={addTargetNode} variant="danger">
+                      <FontAwesomeIcon icon="fa-solid fa-arrow-left" /> End
+                    </Button>
+                  </NavDropdown.Item>
+                </NavDropdown>
+              </Nav>
+            </Navbar.Collapse>
+          </Container>
+        </Navbar> */}
         <Button onClick={addNode} variant="secondary">
           <FontAwesomeIcon icon="fa-solid fa-arrows-h" /> Custom
         </Button>
