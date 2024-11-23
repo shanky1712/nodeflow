@@ -10,6 +10,7 @@ export default function DefaultLayout() {
   // if (!token) {
   //   return <Navigate to="/login"/>
   // }
+  let API_URL = `${import.meta.env.VITE_API_BASE_URL}`;
   const onLogout = ev => {
     ev.preventDefault()
 
@@ -38,7 +39,7 @@ export default function DefaultLayout() {
           </div>
 
           <div>
-            <a className="btn-logout" href="http://127.0.0.1:8001/automation/waflows">Flows</a> &nbsp; &nbsp;
+            <a className="btn-logout" href={API_URL + "/automation/waflows"}>Flows</a> &nbsp; &nbsp;
             {/* <a onClick={onLogout} className="btn-logout" href="#">Logout</a> */}
           </div>
         </header>
