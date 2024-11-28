@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import CustomForm from '../CustomForm';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axiosClient from "../../../axios-client"
 
 const Popup = ({ getData, isOpen, onClose, children, ...props }) => {
@@ -168,10 +169,10 @@ const Popup = ({ getData, isOpen, onClose, children, ...props }) => {
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleCloseModal}>
-              Close
+            <FontAwesomeIcon icon="fa-solid fa-cancel" /> Close
             </Button>
             <Button variant="primary" type="submit" disabled={isLoading} onClick={!isLoading ? handleSaveNodeForm : null} >
-              {isLoading ? 'Loading…' : 'Save Changes'}
+            <FontAwesomeIcon icon="fa-solid fa-save" /> {isLoading ? 'Loading…' : `Save Changes`}
             </Button>
           </Modal.Footer>
         </Form>

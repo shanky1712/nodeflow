@@ -172,7 +172,20 @@
     text-align: right;
     height: 16px;
   }
-
+  .tabsIcon {
+    width:36px;
+  }
+  .tabsText {
+    background-color: #979797;
+    color: white;
+    font-weight: bold;
+    margin-top: 5px;
+    font-size: 10px;
+    padding: 2px;
+  }
+  label {
+    font-weight: bold;
+  }
   .react-flow__node-customNode{
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;

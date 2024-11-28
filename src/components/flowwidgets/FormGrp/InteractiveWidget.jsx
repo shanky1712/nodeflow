@@ -11,19 +11,15 @@ const InteractiveWidget = ({formData, setFormData}) => {
     { name: 'Button', value: '1' },
     { name: 'List', value: '2' },
   ];
-  const [radioValue, setRadioValue] = useState(formData.interactive_optionType || '1');
+  const [radioValue, setRadioValue] = useState(formData.interactive_optionType || '');
   // console.log("formData interactive_options")
   // console.log(formData.interactive_options)
   const [optionList, setOptionList] = useState( formData.interactive_options || [{ option: "" }]);
   
   
-  const handleRowTitleLblChange = (e, index) => {
+  const handleHeadTitleLblChange = (e, index) => {
     const { name, value } = e.target;
-    const list = [...optionList];
-    list[index][name] = value;
-    setOptionList(list);
-    setFormData((prevFormData) => ({ ...prevFormData, ["interactive_options"]: list }));
-    // console.log(optionList)
+    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
   const handleOptionDescLblChange = (e, index) => {
     const { name, value } = e.target;
@@ -74,13 +70,13 @@ const InteractiveWidget = ({formData, setFormData}) => {
   }
   return (
     <>
-      <Form.Group className="mb-3" controlId="flow-body-interactive">
-        <Form.Label>Header</Form.Label>
-        <Form.Control className="mb-3" required as="textarea" rows={1} name='interactive_interactiveHeader' onChange={handleHeaderChange} value={formData.interactive_interactiveHeader} />
-        <Form.Label>Body</Form.Label>
-        <Form.Control className="mb-3" required as="textarea" rows={3} name='interactive_interactiveBody' onChange={handleBodyChange} value={formData.interactive_interactiveBody} />
-        <Form.Label>Footer</Form.Label>
-        <Form.Control className="mb-3" required as="textarea" rows={1} name='interactive_interactiveFooter' onChange={handleFooterChange} value={formData.interactive_interactiveFooter} />
+      <Form.Group className="mb-3">
+        <Form.Label htmlFor="flow-header-interactive">Header</Form.Label>
+        <Form.Control id="flow-header-interactive" className="mb-3" required as="textarea" rows={1} name='interactive_interactiveHeader' onChange={handleHeaderChange} value={formData.interactive_interactiveHeader} />
+        <Form.Label htmlFor="flow-body-interactive">Body</Form.Label>
+        <Form.Control id="flow-body-interactive" className="mb-3" required as="textarea" rows={3} name='interactive_interactiveBody' onChange={handleBodyChange} value={formData.interactive_interactiveBody} />
+        <Form.Label htmlFor="flow-footer-interactive">Footer</Form.Label>
+        <Form.Control id="flow-footer-interactive" className="mb-3" required as="textarea" rows={1} name='interactive_interactiveFooter' onChange={handleFooterChange} value={formData.interactive_interactiveFooter} />
         <Form.Control.Feedback type="invalid">This is required Field</Form.Control.Feedback>
       </Form.Group>
       <ButtonGroup className="mb-3" role="group" size="lg">
@@ -104,11 +100,18 @@ const InteractiveWidget = ({formData, setFormData}) => {
       <div className="form-field">
         {/* <label htmlFor="option">Configure Options</label> */}
         {radioValue == 2 && (
+          <>
+            <Form.Label>List Header Title</Form.Label>
+            <Form.Control className="mb-3" required as="input" rows={1} name='interactive_list_head_title' onChange={handleHeadTitleLblChange} value={formData.interactive_list_head_title} />
+            <Form.Control.Feedback type="invalid">This is required Field</Form.Control.Feedback>
+          </>
+        )}
+        {radioValue == 2 && (
           <div className="row">
-            <div className="col-md-3">Row Title</div>
-            <div className="col-md-3">Option Text</div>
-            <div className="col-md-5">Description</div>
-            <div className="col-md-1">Action</div>
+            {/* <div className="col-md-3">Row Title</div> */}
+            <div className="col-md-4"><label>Option Text</label></div>
+            <div className="col-md-7"><label>Description</label></div>
+            <div className="col-md-1"><label>Action</label></div>
           </div>
         )}
         {optionList.map((singleOption, index) => (
@@ -129,7 +132,7 @@ const InteractiveWidget = ({formData, setFormData}) => {
                 )}
               {radioValue == 2 && (
                 <>
-                  <div className="col-md-3">
+                  {/* <div className="col-md-3">
                     <input
                       className="mb-2"
                       name="interactive_row_title"
@@ -139,24 +142,24 @@ const InteractiveWidget = ({formData, setFormData}) => {
                       onChange={(e) => handleRowTitleLblChange(e, index)}
                       required
                     />
-                  </div>
-                  <div className="col-md-3">
+                  </div> */}
+                  <div className="col-md-4">
                     <input
                       className="mb-2"
                       name="interactive_option"
                       type="text"
-                      id={"option-" + index}
+                      id={"option-text-" + index}
                       value={singleOption.interactive_option || ''}
                       onChange={(e) => handleOptionLblChange(e, index)}
                       required
                     />
                   </div>
-                  <div className="col-md-5">
+                  <div className="col-md-7">
                     <input
                       className="mb-2"
                       name="interactive_option_description"
                       type="text"
-                      id={"option-" + index}
+                      id={"option-desc-" + index}
                       value={singleOption.interactive_option_description || ''}
                       onChange={(e) => handleOptionDescLblChange(e, index)}
                       required
