@@ -6,7 +6,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 export default function DefaultLayout() {
   const [searchParams] = useSearchParams();
   const {user, token, setUser, setToken, notification} = useStateContext();
-  setToken(searchParams.get('token'));
+  // setToken(searchParams.get('token'));
+
+  useEffect(() => {
+    const tokenFromQuery = searchParams.get('token');
+    if (tokenFromQuery) {
+      setToken(tokenFromQuery);
+    }
+  }, [searchParams, setToken]);
+  
   // if (!token) {
   //   return <Navigate to="/login"/>
   // }

@@ -17,10 +17,6 @@ const CustomForm = ({formData, setFormData, defaultTab, setDefaultTab}) => {
   const handleTabSelect = key => {
     setDefaultTab(key)
     const filteredWidgets = widgets.filter(element => element !== key+'_');
-    // setFormData({})
-    // console.log("widgetkey")
-    // console.log(formData)
-    // console.log(filteredWidgets)
     Object.keys(formData).forEach((k, i) => {
       filteredWidgets.map((widgetkey, index) => {
         if (k.indexOf(widgetkey) !== -1) {

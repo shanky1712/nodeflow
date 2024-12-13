@@ -17,6 +17,22 @@ const Popup = ({ getData, isOpen, onClose, children, ...props }) => {
     }
     setModalOpen(false)
   }
+  
+  // const WA_TEMPLATES = localStorage.getItem("WA_TEMPLATES");
+  // useEffect(() => {
+  //   if (!WA_TEMPLATES) {
+  //     axiosClient.get(`/flows/templates`)
+  //       .then(({data}) => {
+  //         if (data.data) {
+  //           localStorage.setItem("WA_TEMPLATES", JSON.stringify(data.data));
+  //           WA_TEMPLATES = localStorage.getItem("WA_TEMPLATES");
+  //         }
+  //       })
+  //       .catch(() => {
+  //       })
+  //   }
+  //   setModalOpen(isOpen)
+  // }, [WA_TEMPLATES])
 
   useEffect(() => {
     setModalOpen(isOpen)
@@ -65,8 +81,8 @@ const Popup = ({ getData, isOpen, onClose, children, ...props }) => {
         obj["type"] = "source";
         obj["label"] = options.interactive_option;
         handleObj.push(obj);
-        console.log(index)
-        console.log(options.interactive_option)
+        // console.log(index)
+        // console.log(options.interactive_option)
 
       })
     }
@@ -108,7 +124,7 @@ const Popup = ({ getData, isOpen, onClose, children, ...props }) => {
               return node;
             })
           );
-          console.log(nodeInternals)
+          // console.log(nodeInternals)
 
         })
         .catch(err => {
@@ -136,7 +152,7 @@ const Popup = ({ getData, isOpen, onClose, children, ...props }) => {
         return node;
       })
     );
-    console.log(nodeInternals);
+    // console.log(nodeInternals);
     setLoading(true);
   }
 
