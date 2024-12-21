@@ -211,6 +211,12 @@
   .tooltip-inner{
     background: url("/assets/wa_bg.jpg");
   }
+  .dynavar {
+    border: 4px dotted #eaeaea;
+    padding: 5px;
+    border-radius: 10px;
+    background-color: aliceblue;
+  }
   .speech-wrapper{
     padding: 10px;
     text-align:left;

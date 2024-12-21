@@ -75,9 +75,9 @@ const CustomForm = ({formData, setFormData, defaultTab, setDefaultTab}) => {
         </Tab> */}
 
         {/* Templates */}
-        {/* <Tab eventKey="template" title={<><img src="../../assets/icons/template.svg" className="tabsIcon" /><div className="tabsText">Template</div></>}>
+        <Tab eventKey="template" title={<><img src="../../assets/icons/template.svg" className="tabsIcon" /><div className="tabsText">Template</div></>}>
           { (defaultTab === 'template') ? <TemplateWidget formData={formData} setFormData={setFormData} /> : <></> }
-        </Tab> */}
+        </Tab>
 
         {/* Flows */}
         {/* <Tab eventKey="template" title={<><img src="../../assets/icons/flow.svg" className="tabsIcon" /><div className="tabsText">Flow</div></>}>

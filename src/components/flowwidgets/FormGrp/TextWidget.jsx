@@ -17,10 +17,10 @@ const TextWidget = ({formData, setFormData}) => {
     <Popover id="popover-basic">
       <Popover.Header as="h3">Available Variables</Popover.Header>
       <Popover.Body>
-        <div>{`{{first_name}}`}</div>
-        <div>{`{{last_name}}`}</div>
-        <div>{`{{full_name}}`}</div>
-        <div>{`{{phone}}`}</div>
+      <div>name</div>
+        <div>first name</div>
+        <div>last name</div>
+        <div>phone</div>
       </Popover.Body>
     </Popover>
   );

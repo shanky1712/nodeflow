@@ -17,22 +17,21 @@ const Popup = ({ getData, isOpen, onClose, children, ...props }) => {
     }
     setModalOpen(false)
   }
-  
-  // const WA_TEMPLATES = localStorage.getItem("WA_TEMPLATES");
-  // useEffect(() => {
-  //   if (!WA_TEMPLATES) {
-  //     axiosClient.get(`/flows/templates`)
-  //       .then(({data}) => {
-  //         if (data.data) {
-  //           localStorage.setItem("WA_TEMPLATES", JSON.stringify(data.data));
-  //           WA_TEMPLATES = localStorage.getItem("WA_TEMPLATES");
-  //         }
-  //       })
-  //       .catch(() => {
-  //       })
-  //   }
-  //   setModalOpen(isOpen)
-  // }, [WA_TEMPLATES])
+  const WA_TEMPLATES = localStorage.getItem("WA_TEMPLATES");
+  useEffect(() => {
+    if (!WA_TEMPLATES) {
+      axiosClient.get(`/flows/templates`)
+        .then(({data}) => {
+          if (data.data) {
+            localStorage.setItem("WA_TEMPLATES", JSON.stringify(data.data));
+            WA_TEMPLATES = localStorage.getItem("WA_TEMPLATES");
+          }
+        })
+        .catch(() => {
+        })
+    }
+    setModalOpen(isOpen)
+  }, [WA_TEMPLATES])
 
   useEffect(() => {
     setModalOpen(isOpen)
@@ -57,6 +56,7 @@ const Popup = ({ getData, isOpen, onClose, children, ...props }) => {
   const curNodeId = useNodeId();
   const store = useStoreApi();
   const { setNodes } = useReactFlow();
+  const token = localStorage.getItem('ACCESS_TOKEN');
   const handleSaveNodeForm = (event) => {
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
@@ -87,8 +87,7 @@ const Popup = ({ getData, isOpen, onClose, children, ...props }) => {
       })
     }
     else if (defaultTab === 'doc' || defaultTab === 'image') {
-      
-      const token = localStorage.getItem('ACCESS_TOKEN');
+
       const bodyParameters = new FormData();
       if (defaultTab === 'doc') {
         bodyParameters.append('file', formData.docData);
@@ -118,13 +117,58 @@ const Popup = ({ getData, isOpen, onClose, children, ...props }) => {
                 }
                 node.data.formData = {
                   ...node.data.formData,
-                  formData: formData,
+                  ...formData,
                 };
               }
               return node;
             })
           );
           // console.log(nodeInternals)
+
+        })
+        .catch(err => {
+          const response = err.response;
+          if (response && response.status === 422) {
+            setErrors(response.data.errors)
+          }
+        })
+
+      handleObj = [{"id": curNodeId+"-handle", "type":"source", "label": "Next"}];
+    }
+    else if (defaultTab === 'template') {
+
+      const bodyParameters = new FormData();
+      bodyParameters.append('file', formData.header_media);
+      bodyParameters.append('fileName', formData.header_media.name);
+
+      // Safely delete formData.header_media
+      // if (formData.header_media) {
+      //   delete formData.header_media;
+      // }
+      
+      const config = {
+        headers: {
+          'content-type': 'multipart/form-data',
+          Authorization: `Bearer ${token}`
+        },
+      };
+      axiosClient.post('/fileupload', bodyParameters, config)
+        .then((data) => {
+          
+          setNodes(
+            Array.from(nodeInternals.values()).map((node) => {
+              if (node.id === curNodeId) {
+                formData.header.parameters[0].url = data.data.url;
+                formData.header.parameters[0].value = data.data.url;
+                node.data.formData = {
+                  ...node.data.formData,
+                  ...formData,
+                };
+              }
+              return node;
+            })
+          );
+          console.log(nodeInternals)
 
         })
         .catch(err => {

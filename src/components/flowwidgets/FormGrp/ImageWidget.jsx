@@ -18,8 +18,8 @@ const ImageWidget = ({formData, setFormData}) => {
       ['image_captionTxt']: e.target.files[0].name,
     }));
     setFile(URL.createObjectURL(e.target.files[0]));
-    console.log(e.target.files[0]);
-    console.log(e.target.files[0].name);
+    // console.log(e.target.files[0]);
+    // console.log(e.target.files[0].name);
   }
   const handleChange = (event) => {
     const { name, value } = event.target;
