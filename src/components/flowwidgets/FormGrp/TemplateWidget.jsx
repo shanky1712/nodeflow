@@ -116,7 +116,7 @@ const TemplateWidget = ({formData, setFormData}) => {
     }
   };
   
-  const WA_TEMPLATES = localStorage.getItem("WA_TEMPLATES");
+  let WA_TEMPLATES = localStorage.getItem("WA_TEMPLATES");
   useEffect(() => {
     const WA_TEMPLATES_DATA = JSON.parse(WA_TEMPLATES) || [];
     const results = [];

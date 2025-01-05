@@ -12,8 +12,9 @@ import LocationWidget from './FormGrp/LocationWidget'
 import ContactWidget from './FormGrp/ContactWidget'
 import InteractiveWidget from './FormGrp/InteractiveWidget'
 import TemplateWidget from './FormGrp/TemplateWidget'
+import CtaWidget from './FormGrp/CtaWidget'
 const CustomForm = ({formData, setFormData, defaultTab, setDefaultTab}) => {
-  const widgets = ["text_", "image_", "video_", "audio_", "doc_", "loc_", "contact_", "interactive_", "template_"];
+  const widgets = ["text_", "cta_url_", "image_", "video_", "audio_", "doc_", "loc_", "contact_", "interactive_", "template_"];
   const handleTabSelect = key => {
     setDefaultTab(key)
     const filteredWidgets = widgets.filter(element => element !== key+'_');
@@ -31,6 +32,11 @@ const CustomForm = ({formData, setFormData, defaultTab, setDefaultTab}) => {
         {/* Text */}
         <Tab eventKey="text" title={<><img src="../../assets/icons/text.svg" className="tabsIcon" /><div className="tabsText">Text</div></>} >
         { (defaultTab === 'text') ? <TextWidget formData={formData} setFormData={setFormData} /> : <></> }
+          {/* <TextWidget formData={formData} setFormData={setFormData} /> */}
+        </Tab>
+        {/* CTA */}
+        <Tab eventKey="cta_url" title={<><img src="../../assets/icons/cta.svg" className="tabsIcon" /><div className="tabsText">CTA</div></>} >
+        { (defaultTab === 'cta_url') ? <CtaWidget formData={formData} setFormData={setFormData} /> : <></> }
           {/* <TextWidget formData={formData} setFormData={setFormData} /> */}
         </Tab>
         {/* Image */}

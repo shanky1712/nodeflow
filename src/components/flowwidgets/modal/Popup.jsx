@@ -17,7 +17,7 @@ const Popup = ({ getData, isOpen, onClose, children, ...props }) => {
     }
     setModalOpen(false)
   }
-  const WA_TEMPLATES = localStorage.getItem("WA_TEMPLATES");
+  let WA_TEMPLATES = localStorage.getItem("WA_TEMPLATES");
   useEffect(() => {
     if (!WA_TEMPLATES) {
       axiosClient.get(`/flows/templates`)
