@@ -55,6 +55,7 @@ const ImageWidget = ({formData, setFormData}) => {
             <Form.Control
               required
               type="text"
+              maxLength = "1024"
               placeholder="Caption Text"
               name="image_captionTxt"
               onChange={handleChange}

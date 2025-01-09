@@ -34,10 +34,10 @@ const CtaWidget = ({formData, setFormData}) => {
     <Popover id="popover-basic">
       <Popover.Header as="h3">Available Variables</Popover.Header>
       <Popover.Body>
-        <div>name</div>
-        <div>first name</div>
-        <div>last name</div>
-        <div>phone</div>
+        <div>{'{full_name}'}</div>
+        <div>{'{first_name}'}</div>
+        <div>{'{last_name}'}</div>
+        <div>{'{phone}'}</div>
       </Popover.Body>
     </Popover>
   );
@@ -47,21 +47,21 @@ const CtaWidget = ({formData, setFormData}) => {
         <Col>
           <Form.Group className="mb-3">
             <Form.Label htmlFor="flow-header-interactive">Header</Form.Label>
-            <Form.Control id="flow-header-interactive" className="mb-3" required as="textarea" rows={1} name='cta_header' onChange={handleHeaderChange} value={formData.cta_header} />
+            <Form.Control id="flow-header-interactive" className="mb-3" maxLength = "24" required as="textarea" rows={1} name='cta_header' onChange={handleHeaderChange} value={formData.cta_header} />
             <Form.Label htmlFor="flow-body-interactive">
               Body &nbsp;
               <OverlayTrigger trigger="click" placement="right" overlay={popover}>
                 <FontAwesomeIcon icon="fa-solid fa-circle-info" />
               </OverlayTrigger>
             </Form.Label>
-            <Form.Control id="flow-body-interactive" className="mb-3" required as="textarea" rows={3} name='cta_body' onChange={handleBodyChange} value={formData.cta_body} />
+            <Form.Control id="flow-body-interactive" className="mb-3" maxLength = "4000" required as="textarea" rows={3} name='cta_body' onChange={handleBodyChange} value={formData.cta_body} />
             <Form.Label htmlFor="flow-footer-interactive">Footer</Form.Label>
-            <Form.Control id="flow-footer-interactive" className="mb-3" required as="textarea" rows={1} name='cta_footer' onChange={handleFooterChange} value={formData.cta_footer} />
+            <Form.Control id="flow-footer-interactive" className="mb-3" maxLength = "24" required as="textarea" rows={1} name='cta_footer' onChange={handleFooterChange} value={formData.cta_footer} />
           </Form.Group>
           <Form.Group className="row mb-3">
             <Form.Group className="col-md-6 mb-3">
               <Form.Label htmlFor="flow-ctadisplaytext-interactive">CTA Display Text</Form.Label>
-              <Form.Control id="flow-ctadisplaytext-interactive" className="mb-3" required as="textarea" rows={1} name='cta_displaytext' onChange={handleCTADisplayTextChange} value={formData.cta_displaytext} />
+              <Form.Control id="flow-ctadisplaytext-interactive" className="mb-3" maxLength = "20" required as="textarea" rows={1} name='cta_displaytext' onChange={handleCTADisplayTextChange} value={formData.cta_displaytext} />
             </Form.Group>
             <Form.Group className="col-md-6 mb-3">
               <Form.Label htmlFor="flow-ctaurl-interactive">CTA Url</Form.Label>

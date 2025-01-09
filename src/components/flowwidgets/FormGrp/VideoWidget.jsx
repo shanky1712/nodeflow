@@ -59,6 +59,7 @@ const VideoWidget = ({formData, setFormData}) => {
         <Form.Control
           required
           type="text"
+          maxLength = "1024"
           placeholder="Caption Text"
           name="video_captionTxt"
           onChange={handleChange}

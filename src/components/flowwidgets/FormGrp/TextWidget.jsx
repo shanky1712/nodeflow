@@ -17,10 +17,10 @@ const TextWidget = ({formData, setFormData}) => {
     <Popover id="popover-basic">
       <Popover.Header as="h3">Available Variables</Popover.Header>
       <Popover.Body>
-      <div>name</div>
-        <div>first name</div>
-        <div>last name</div>
-        <div>phone</div>
+        <div>{'{full_name}'}</div>
+        <div>{'{first_name}'}</div>
+        <div>{'{last_name}'}</div>
+        <div>{'{phone}'}</div>
       </Popover.Body>
     </Popover>
   );
@@ -37,7 +37,9 @@ const TextWidget = ({formData, setFormData}) => {
             </Form.Label>
             <Form.Control
               required
-              type="text"
+              maxLength = "4000"
+              as="textarea" 
+              rows={2}
               name="text_bodyTxt"
               placeholder="Text Message Body"
               onChange={handleChange}

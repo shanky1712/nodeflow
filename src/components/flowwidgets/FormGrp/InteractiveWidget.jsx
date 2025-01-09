@@ -78,10 +78,10 @@ const InteractiveWidget = ({formData, setFormData}) => {
     <Popover id="popover-basic">
       <Popover.Header as="h3">Available Variables</Popover.Header>
       <Popover.Body>
-        <div>name</div>
-        <div>first name</div>
-        <div>last name</div>
-        <div>phone</div>
+        <div>{'{full_name}'}</div>
+        <div>{'{first_name}'}</div>
+        <div>{'{last_name}'}</div>
+        <div>{'{phone}'}</div>
       </Popover.Body>
     </Popover>
   );
@@ -91,16 +91,16 @@ const InteractiveWidget = ({formData, setFormData}) => {
         <Col>
           <Form.Group className="mb-3">
             <Form.Label htmlFor="flow-header-interactive">Header</Form.Label>
-            <Form.Control id="flow-header-interactive" className="mb-3" required as="textarea" rows={1} name='interactive_interactiveHeader' onChange={handleHeaderChange} value={formData.interactive_interactiveHeader} />
+            <Form.Control id="flow-header-interactive" className="mb-3" maxLength = "60" required as="textarea" rows={1} name='interactive_interactiveHeader' onChange={handleHeaderChange} value={formData.interactive_interactiveHeader} />
             <Form.Label htmlFor="flow-body-interactive">
               Body &nbsp;
               <OverlayTrigger trigger="click" placement="right" overlay={popover}>
                 <FontAwesomeIcon icon="fa-solid fa-circle-info" />
               </OverlayTrigger>
             </Form.Label>
-            <Form.Control id="flow-body-interactive" className="mb-3" required as="textarea" rows={3} name='interactive_interactiveBody' onChange={handleBodyChange} value={formData.interactive_interactiveBody} />
+            <Form.Control id="flow-body-interactive" className="mb-3" maxLength = "4000" required as="textarea" rows={3} name='interactive_interactiveBody' onChange={handleBodyChange} value={formData.interactive_interactiveBody} />
             <Form.Label htmlFor="flow-footer-interactive">Footer</Form.Label>
-            <Form.Control id="flow-footer-interactive" className="mb-3" required as="textarea" rows={1} name='interactive_interactiveFooter' onChange={handleFooterChange} value={formData.interactive_interactiveFooter} />
+            <Form.Control id="flow-footer-interactive" className="mb-3" maxLength = "60" required as="textarea" rows={1} name='interactive_interactiveFooter' onChange={handleFooterChange} value={formData.interactive_interactiveFooter} />
             <Form.Control.Feedback type="invalid">This is required Field</Form.Control.Feedback>
           </Form.Group>
           <ButtonGroup className="mb-3" role="group" size="lg">
@@ -126,7 +126,7 @@ const InteractiveWidget = ({formData, setFormData}) => {
             {radioValue == 2 && (
               <>
                 <Form.Label>List Header Title</Form.Label>
-                <Form.Control className="mb-3" required as="input" rows={1} name='interactive_list_head_title' onChange={handleHeadTitleLblChange} value={formData.interactive_list_head_title} />
+                <Form.Control className="mb-3" required as="input" maxLength = "24" rows={1} name='interactive_list_head_title' onChange={handleHeadTitleLblChange} value={formData.interactive_list_head_title} />
                 <Form.Control.Feedback type="invalid">This is required Field</Form.Control.Feedback>
               </>
             )}
@@ -147,6 +147,7 @@ const InteractiveWidget = ({formData, setFormData}) => {
                           className="mb-2"
                           name="interactive_option"
                           type="text"
+                           maxLength = "20"
                           id={"option-" + index}
                           value={singleOption.interactive_option || ''}
                           onChange={(e) => handleOptionLblChange(e, index)}
@@ -172,6 +173,7 @@ const InteractiveWidget = ({formData, setFormData}) => {
                           className="mb-2"
                           name="interactive_option"
                           type="text"
+                          maxLength = "20"
                           id={"option-text-" + index}
                           value={singleOption.interactive_option || ''}
                           onChange={(e) => handleOptionLblChange(e, index)}
@@ -182,6 +184,7 @@ const InteractiveWidget = ({formData, setFormData}) => {
                         <input
                           className="mb-2"
                           name="interactive_option_description"
+                          maxLength = "72"
                           type="text"
                           id={"option-desc-" + index}
                           value={singleOption.interactive_option_description || ''}
@@ -198,7 +201,7 @@ const InteractiveWidget = ({formData, setFormData}) => {
                       </Button>
                     )}
                   </div>
-                    {optionList.length - 1 === index && optionList.length < 8 && (
+                    {optionList.length - 1 === index && optionList.length < 9 && (
                       <div className="col-md-12">
                         <div className="col-md-11"></div>
                         <div className="col-md-1">

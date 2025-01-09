@@ -106,7 +106,7 @@
     background: white;
   }
   .react-flow__node-customNode {
-    padding: 10px;
+    /* padding: 10px; */
     border-radius: 3px;
     width: 200px;
     font-size: 12px;
@@ -198,10 +198,43 @@
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     background: url("/assets/wa_bg.jpg");
+    display: flex;
+  }
+  .waguruCustomNode {
+    width: 100%;
+  }
+  .waguruCustomNodeIcons {
+    width: 20%;
+    float: left;
+    background: white;
+    height: 100%;
+    display: table;
+  }
+  .waguruCustomNodeIconsImg {
+    display: table-cell;
+    text-align: center; /* Centers text Horizontally */
+    vertical-align: middle; /* Centers text Vertically */
+  }
+  .waguruCustomNodeIcons img{
+    /* vertical-align: text-top; */
+  }
+  .waguruCustomNodeData {
+    width: 80%;
+    float: left;
   }
   .nodeLbl{
     min-height: 38px;
     font-weight: bold;
+  }
+  .node.tabsIcon {
+    /* background-color: white;
+    padding: 5px;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    border: 1px solid #a5d6a7;
+    width: 32px;
+    z-index: -1; */
   }
   #button-tooltip{
     /* border: 10px solid green;
